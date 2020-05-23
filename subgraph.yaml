@@ -5,11 +5,11 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
-    network: mainnet
+    name: ManagerContract
+    network: rinkeby
     source:
-      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
-      abi: Gravity
+      address: '0x42811966D393b5A262ed4CFdB854d3b9972C5f37'
+      abi: TokenManager
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
