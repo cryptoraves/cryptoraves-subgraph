@@ -6,19 +6,19 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: ManagerContract
-    network: development
+    network: rinkeby
     source:
       address: '0xa26cEBafC7A379aBAdED78c2908d5ab1BcDda56A'
-      abi: Gravity
+      abi: TokenManager
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Gravity
+        - TokenManager
       abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
+        - name: TokenManager
+          file: ./abis/TokenManager.json
       eventHandlers:
         - event: NewGravatar(uint256,address,string,string)
           handler: handleNewGravatar
