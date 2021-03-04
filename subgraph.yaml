@@ -5,23 +5,25 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: ManagerContract
-    network: development
+    name: TokenManagement
+    network: mainnet
     source:
-      address: '0xa26cEBafC7A379aBAdED78c2908d5ab1BcDda56A'
-      abi: Gravity
+      address: '0x551a79341E97f6D9e52E6C7D144050A41fa2079E'
+      abi: TokenManagement
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Gravity
+        - TokenManagement
       abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
+        - name: TokenManagement
+          file: ./abis/cryptoravesContracts/TokenManagement.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
-      file: ./src/mapping.ts
+        - event: Transfer(indexed address,indexed address,uint256,uint256)
+          handler: hendleTransfer
+        - event: Deposit(indexed address,uint256,indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,indexed address,indexed uint256)
+          handler: handleWithdraw
+      file: ./src/tokenManagmentMapping.ts

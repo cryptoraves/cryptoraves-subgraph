@@ -5,23 +5,25 @@ schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
+    name: TokenManagement
     network: mainnet
     source:
-      address: "0x2E645469f354BB4F5c8a05B3b30A929361cf77eC"
-      abi: Gravity
+      address: "0x551a79341E97f6D9e52E6C7D144050A41fa2079E"
+      abi: TokenManagement
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Gravatar
+        - TokenManagement
       abis:
-        - name: Gravity
-          file: Gravity/abis/Gravity.json
+        - name: TokenManagement
+          file: TokenManagement/abis/cryptoravesContracts/TokenManagement.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
-      file: Gravity/Gravity.wasm
+        - event: Transfer(indexed address,indexed address,uint256,uint256)
+          handler: hendleTransfer
+        - event: Deposit(indexed address,uint256,indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,indexed address,indexed uint256)
+          handler: handleWithdraw
+      file: TokenManagement/TokenManagement.wasm
