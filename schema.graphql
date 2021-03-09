@@ -1,24 +1,24 @@
-type transfers @entity {
+type _Transfer @entity {
 	id: ID!
 	from: Bytes! 
 	to: Bytes!
-	amount: BigDecimal!
+	amount: BigInt!
 	tokenId: BigInt!
 }
 
-type deposits @entity {
+type _Deposit @entity {
 	id: ID!
 	from: Bytes! 
-	value: BigDecimal!
+	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
-	ercType: Int!
+	ercType: BigInt!
 }
 
-type withdrawals @entity {
+type _Withdraw @entity {
 	id: ID!
 	to: Bytes! 
-	value: BigDecimal!
+	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
 }

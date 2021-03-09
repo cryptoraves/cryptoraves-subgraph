@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class transfers extends Entity {
+export class _Transfer extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class transfers extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save transfers entity without an ID");
+    assert(id !== null, "Cannot save _Transfer entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save transfers entity with non-string ID. " +
+      "Cannot save _Transfer entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("transfers", id.toString(), this);
+    store.set("_Transfer", id.toString(), this);
   }
 
-  static load(id: string): transfers | null {
-    return store.get("transfers", id) as transfers | null;
+  static load(id: string): _Transfer | null {
+    return store.get("_Transfer", id) as _Transfer | null;
   }
 
   get id(): string {
@@ -60,13 +60,13 @@ export class transfers extends Entity {
     this.set("to", Value.fromBytes(value));
   }
 
-  get amount(): BigDecimal {
+  get amount(): BigInt {
     let value = this.get("amount");
-    return value.toBigDecimal();
+    return value.toBigInt();
   }
 
-  set amount(value: BigDecimal) {
-    this.set("amount", Value.fromBigDecimal(value));
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 
   get tokenId(): BigInt {
@@ -79,7 +79,7 @@ export class transfers extends Entity {
   }
 }
 
-export class deposits extends Entity {
+export class _Deposit extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -87,17 +87,17 @@ export class deposits extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save deposits entity without an ID");
+    assert(id !== null, "Cannot save _Deposit entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save deposits entity with non-string ID. " +
+      "Cannot save _Deposit entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("deposits", id.toString(), this);
+    store.set("_Deposit", id.toString(), this);
   }
 
-  static load(id: string): deposits | null {
-    return store.get("deposits", id) as deposits | null;
+  static load(id: string): _Deposit | null {
+    return store.get("_Deposit", id) as _Deposit | null;
   }
 
   get id(): string {
@@ -118,13 +118,13 @@ export class deposits extends Entity {
     this.set("from", Value.fromBytes(value));
   }
 
-  get value(): BigDecimal {
+  get value(): BigInt {
     let value = this.get("value");
-    return value.toBigDecimal();
+    return value.toBigInt();
   }
 
-  set value(value: BigDecimal) {
-    this.set("value", Value.fromBigDecimal(value));
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
   }
 
   get tokenAddress(): Bytes {
@@ -145,17 +145,17 @@ export class deposits extends Entity {
     this.set("cryptoravesTokenId", Value.fromBigInt(value));
   }
 
-  get ercType(): i32 {
+  get ercType(): BigInt {
     let value = this.get("ercType");
-    return value.toI32();
+    return value.toBigInt();
   }
 
-  set ercType(value: i32) {
-    this.set("ercType", Value.fromI32(value));
+  set ercType(value: BigInt) {
+    this.set("ercType", Value.fromBigInt(value));
   }
 }
 
-export class withdrawals extends Entity {
+export class _Withdraw extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -163,17 +163,17 @@ export class withdrawals extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save withdrawals entity without an ID");
+    assert(id !== null, "Cannot save _Withdraw entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save withdrawals entity with non-string ID. " +
+      "Cannot save _Withdraw entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("withdrawals", id.toString(), this);
+    store.set("_Withdraw", id.toString(), this);
   }
 
-  static load(id: string): withdrawals | null {
-    return store.get("withdrawals", id) as withdrawals | null;
+  static load(id: string): _Withdraw | null {
+    return store.get("_Withdraw", id) as _Withdraw | null;
   }
 
   get id(): string {
@@ -194,13 +194,13 @@ export class withdrawals extends Entity {
     this.set("to", Value.fromBytes(value));
   }
 
-  get value(): BigDecimal {
+  get value(): BigInt {
     let value = this.get("value");
-    return value.toBigDecimal();
+    return value.toBigInt();
   }
 
-  set value(value: BigDecimal) {
-    this.set("value", Value.fromBigDecimal(value));
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
   }
 
   get tokenAddress(): Bytes {

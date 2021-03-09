@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: "0xcb5C8557238397833efcEf88e9eCb5067bCa0759"
+      address: "0x6aFD412FcBef428f25B45f5ba2B7FC013C00ef23"
       abi: TokenManagement
     mapping:
       kind: ethereum/events

@@ -1,3 +1,14 @@
+#fresh setup
+
+yarn codegen
+yarn build 
+yarn create-local
+yarn deploy-local
+web3-tools/truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
+
+web-tools/deployPerformanceToken.sh
+
+
 {
 	transfers(first: 5){
 		id
@@ -7,3 +18,19 @@
 		tokenId
 	}
 }
+
+curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId } }"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+
+{
+	deposits(first: 5){
+		id
+		from
+		value
+		tokenAddress
+		cryptoravesTokenId
+		ercType
+	}
+}
+
+curl -d '{"query": "{ deposits(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+
