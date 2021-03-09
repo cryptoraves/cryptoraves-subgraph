@@ -1,3 +1,24 @@
-type wallets @entity {
+type transfers @entity {
 	id: ID!
+	from: Bytes! 
+	to: Bytes!
+	amount: BigDecimal!
+	tokenId: BigInt!
+}
+
+type deposits @entity {
+	id: ID!
+	from: Bytes! 
+	value: BigDecimal!
+	tokenAddress: Bytes!
+	cryptoravesTokenId: BigInt!
+	ercType: Int!
+}
+
+type withdrawals @entity {
+	id: ID!
+	to: Bytes! 
+	value: BigDecimal!
+	tokenAddress: Bytes!
+	cryptoravesTokenId: BigInt!
 }

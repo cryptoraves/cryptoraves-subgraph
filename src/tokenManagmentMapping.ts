@@ -1,15 +1,14 @@
 import { Transfer, Deposit, Withdraw } from '../generated/TokenManagement/TokenManagement'
-import { dataSource } from '@graphprotocol/graph-ts'
-
-
 
 export function handleTransfer(event: Transfer): void {
   
-  /*let wallet = new Gravatar(event.params.id.toHex())
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()*/
+  let transfer = transfers.load(event.params.id.toHex())
+  transfer.from = event.params._from
+  transfer.to = event.params._to
+  transfer.value = event.params._value
+  transfer.tokenId = event.params._tokenId
+  transfer.save()
+  
 }
 
 export function handleDeposit(event: Deposit): void {

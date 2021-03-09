@@ -1,0 +1,9 @@
+{
+	transfers(first: 5){
+		id
+		from
+		to
+		amount
+		tokenId
+	}
+}
