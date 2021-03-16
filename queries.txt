@@ -38,3 +38,5 @@ curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId } }"}' http
 
 curl -d '{"query": "{ deposits(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
+curl -d '{"query": "{ heresMyAddresses(first: 5){ id ethAddress cryptoravesAddress } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+

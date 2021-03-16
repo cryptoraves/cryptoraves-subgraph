@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: "0x8Ec222d4F4943f59ae054b16891735cdA389f112"
+      address: "0x433a772a52A931b84D0A00B1C336dA671920949A"
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -27,3 +27,22 @@ dataSources:
         - event: Withdraw(indexed address,uint256,indexed address,indexed uint256)
           handler: handleWithdraw
       file: TokenManagement/TokenManagement.wasm
+  - kind: ethereum/contract
+    name: TransactionManagement
+    network: mainnet
+    source:
+      address: "0xA646e95A5156dc95f3325c1b302BDFAac30F0957"
+      abi: TransactionManagement
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - TransactionManagement
+      abis:
+        - name: TransactionManagement
+          file: TransactionManagement/abis/cryptoravesContracts/TransactionManagement.json
+      eventHandlers:
+        - event: HeresMyAddress(address,address)
+          handler: handleHeresMyAddress
+      file: TransactionManagement/TransactionManagement.wasm

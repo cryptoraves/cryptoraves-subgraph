@@ -22,3 +22,9 @@ type _Withdraw @entity {
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
 }
+
+type _HeresMyAddress @entity {
+	id: ID!
+	ethAddress: Bytes! 
+	cryptoravesAddress: Bytes!
+}
