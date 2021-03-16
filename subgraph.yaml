@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: '0x4A45c5FdCb533c345EeD06B9D73A0B9462AddC9F' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress1 here
+      address: '0x9CEf09A48C834b9cEF18f1B7650D622C7E85B514' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress1 here
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -31,7 +31,7 @@ dataSources:
     name: TransactionManagement
     network: mainnet
     source:
-      address: '0xCbb44Eb47e84ED6C55b3015a1D94Ba1Bf3820411' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
+      address: '0xC1CD10CaDC0c3474A077ADc43C3844c60dA70b5a' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
       abi: TransactionManagement
     mapping:
       kind: ethereum/events
@@ -50,7 +50,7 @@ dataSources:
     name: UserManagement
     network: mainnet
     source:
-      address: '0xCc6aF67130C77Ed254B21766A80f0032054fbcD6' #run truffle test in web3-tools, then cut and paste UserManagementContractAddress1 here
+      address: '0x88a46C0435717C017d84dB1EdB3a514dc3e7B5Ce' #run truffle test in web3-tools, then cut and paste UserManagementContractAddress1 here
       abi: UserManagement
     mapping:
       kind: ethereum/events
@@ -73,7 +73,7 @@ dataSources:
     name: CryptoravesToken
     network: mainnet
     source:
-      address: '0x89023Ad7C33C1D89c4511EA5d2679ee4193f2E22' #run truffle test in web3-tools, then cut and paste CryptoravesTokenContractAddress1 here
+      address: '0xd33D74F41BaBD738F51D0801B3A9D7BEaB540a60' #run truffle test in web3-tools, then cut and paste CryptoravesTokenContractAddress1 here
       abi: CryptoravesToken
     mapping:
       kind: ethereum/events
@@ -88,7 +88,7 @@ dataSources:
         - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
           handler: handleTransferSingle
         - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
-          handler: handleTransferSingle
+          handler: handleTransferBatch
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
         - event: URI(string,indexed uint256)
