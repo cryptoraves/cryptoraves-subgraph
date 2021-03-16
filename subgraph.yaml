@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: '0x433a772a52A931b84D0A00B1C336dA671920949A' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress here
+      address: '0x4Fc4c980FA4e406FCeAcEC0EB6701267b6A1b1B9' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress1 here
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -31,7 +31,7 @@ dataSources:
     name: TransactionManagement
     network: mainnet
     source:
-      address: '0xA646e95A5156dc95f3325c1b302BDFAac30F0957' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress here
+      address: '0x81A0a33cF277F6F48058a71B835E0076698A3DC2' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
       abi: TransactionManagement
     mapping:
       kind: ethereum/events
