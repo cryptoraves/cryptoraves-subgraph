@@ -270,3 +270,168 @@ export class _HeresMyAddress extends Entity {
     this.set("cryptoravesAddress", Value.fromBytes(value));
   }
 }
+
+export class _NewUser extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _NewUser entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _NewUser entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_NewUser", id.toString(), this);
+  }
+
+  static load(id: string): _NewUser | null {
+    return store.get("_NewUser", id) as _NewUser | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get userId(): BigInt {
+    let value = this.get("userId");
+    return value.toBigInt();
+  }
+
+  set userId(value: BigInt) {
+    this.set("userId", Value.fromBigInt(value));
+  }
+
+  get userName(): string {
+    let value = this.get("userName");
+    return value.toString();
+  }
+
+  set userName(value: string) {
+    this.set("userName", Value.fromString(value));
+  }
+
+  get cryptoravesAddress(): Bytes {
+    let value = this.get("cryptoravesAddress");
+    return value.toBytes();
+  }
+
+  set cryptoravesAddress(value: Bytes) {
+    this.set("cryptoravesAddress", Value.fromBytes(value));
+  }
+
+  get imageUrl(): string {
+    let value = this.get("imageUrl");
+    return value.toString();
+  }
+
+  set imageUrl(value: string) {
+    this.set("imageUrl", Value.fromString(value));
+  }
+}
+
+export class _UsernameChange extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _UsernameChange entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _UsernameChange entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_UsernameChange", id.toString(), this);
+  }
+
+  static load(id: string): _UsernameChange | null {
+    return store.get("_UsernameChange", id) as _UsernameChange | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get userId(): BigInt {
+    let value = this.get("userId");
+    return value.toBigInt();
+  }
+
+  set userId(value: BigInt) {
+    this.set("userId", Value.fromBigInt(value));
+  }
+
+  get userName(): string {
+    let value = this.get("userName");
+    return value.toString();
+  }
+
+  set userName(value: string) {
+    this.set("userName", Value.fromString(value));
+  }
+}
+
+export class _ImageChange extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _ImageChange entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _ImageChange entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_ImageChange", id.toString(), this);
+  }
+
+  static load(id: string): _ImageChange | null {
+    return store.get("_ImageChange", id) as _ImageChange | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get userId(): BigInt {
+    let value = this.get("userId");
+    return value.toBigInt();
+  }
+
+  set userId(value: BigInt) {
+    this.set("userId", Value.fromBigInt(value));
+  }
+
+  get imageUrl(): string {
+    let value = this.get("imageUrl");
+    return value.toString();
+  }
+
+  set imageUrl(value: string) {
+    this.set("imageUrl", Value.fromString(value));
+  }
+}

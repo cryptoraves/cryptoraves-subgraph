@@ -66,68 +66,6 @@ export class Deposit__Params {
   }
 }
 
-export class ErrorHandled extends ethereum.Event {
-  get params(): ErrorHandled__Params {
-    return new ErrorHandled__Params(this);
-  }
-}
-
-export class ErrorHandled__Params {
-  _event: ErrorHandled;
-
-  constructor(event: ErrorHandled) {
-    this._event = event;
-  }
-
-  get reason(): string {
-    return this._event.parameters[0].value.toString();
-  }
-}
-
-export class NewAdministrator extends ethereum.Event {
-  get params(): NewAdministrator__Params {
-    return new NewAdministrator__Params(this);
-  }
-}
-
-export class NewAdministrator__Params {
-  _event: NewAdministrator;
-
-  constructor(event: NewAdministrator) {
-    this._event = event;
-  }
-
-  get _newAdminAddr(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get _fromContractAddr(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-}
-
-export class RemovedAdministrator extends ethereum.Event {
-  get params(): RemovedAdministrator__Params {
-    return new RemovedAdministrator__Params(this);
-  }
-}
-
-export class RemovedAdministrator__Params {
-  _event: RemovedAdministrator;
-
-  constructor(event: RemovedAdministrator) {
-    this._event = event;
-  }
-
-  get _oldAdminAddr(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get _fromContractAddr(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-}
-
 export class Transfer extends ethereum.Event {
   get params(): Transfer__Params {
     return new Transfer__Params(this);

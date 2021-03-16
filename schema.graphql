@@ -28,3 +28,23 @@ type _HeresMyAddress @entity {
 	ethAddress: Bytes! 
 	cryptoravesAddress: Bytes!
 }
+
+type _NewUser @entity {
+	id: ID!
+	userId: BigInt! 
+	userName: String!
+	cryptoravesAddress: Bytes!
+	imageUrl: String!
+}
+
+type _UsernameChange @entity {
+	id: ID!
+	userId: BigInt! 
+	userName: String!
+}
+
+type _ImageChange @entity {
+	id: ID!
+	userId: BigInt! 
+	imageUrl: String!
+}

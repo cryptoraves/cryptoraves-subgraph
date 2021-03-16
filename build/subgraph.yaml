@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: "0x4Fc4c980FA4e406FCeAcEC0EB6701267b6A1b1B9"
+      address: "0xA0aBB8cCeb9f616654Dbe39C66Bb4ab490B1fD0a"
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -31,7 +31,7 @@ dataSources:
     name: TransactionManagement
     network: mainnet
     source:
-      address: "0x81A0a33cF277F6F48058a71B835E0076698A3DC2"
+      address: "0x2943BF46Bf659940a7B731f4176F670C338346dB"
       abi: TransactionManagement
     mapping:
       kind: ethereum/events
@@ -46,3 +46,26 @@ dataSources:
         - event: HeresMyAddress(address,address)
           handler: handleHeresMyAddress
       file: TransactionManagement/TransactionManagement.wasm
+  - kind: ethereum/contract
+    name: UserManagement
+    network: mainnet
+    source:
+      address: "0x221F2Ac19F3bE52610366FB1cE0fcCf94c044FD1"
+      abi: UserManagement
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - UserManagement
+      abis:
+        - name: UserManagement
+          file: UserManagement/abis/cryptoravesContracts/UserManagement.json
+      eventHandlers:
+        - event: NewUser(uint256,string,address,string)
+          handler: handleNewUser
+        - event: UsernameChange(uint256,string)
+          handler: handleUsernameChange
+        - event: ImageChange(uint256,string)
+          handler: handleImageChange
+      file: UserManagement/UserManagement.wasm
