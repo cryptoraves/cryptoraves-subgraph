@@ -5,7 +5,6 @@ type _Transfer @entity {
 	amount: BigInt!
 	tokenId: BigInt!
 }
-
 type _Deposit @entity {
 	id: ID!
 	from: Bytes! 
@@ -14,7 +13,6 @@ type _Deposit @entity {
 	cryptoravesTokenId: BigInt!
 	ercType: BigInt!
 }
-
 type _Withdraw @entity {
 	id: ID!
 	to: Bytes! 
@@ -23,11 +21,17 @@ type _Withdraw @entity {
 	cryptoravesTokenId: BigInt!
 }
 
+
+
+
 type _HeresMyAddress @entity {
 	id: ID!
 	ethAddress: Bytes! 
 	cryptoravesAddress: Bytes!
 }
+
+
+
 
 type _NewUser @entity {
 	id: ID!
@@ -36,15 +40,43 @@ type _NewUser @entity {
 	cryptoravesAddress: Bytes!
 	imageUrl: String!
 }
-
 type _UsernameChange @entity {
 	id: ID!
 	userId: BigInt! 
 	userName: String!
 }
-
 type _ImageChange @entity {
 	id: ID!
 	userId: BigInt! 
 	imageUrl: String!
+}
+
+
+
+type _TransferSingle @entity {
+	id: ID!
+	operator: Bytes! 
+	from: Bytes!
+	to: Bytes!
+	cryptoravesTokenId: BigInt!
+	value: BigInt!
+}
+type _TransferBatch @entity {
+	id: ID!
+	operator: Bytes! 
+	from: Bytes!
+	to: Bytes!
+	cryptoravesTokenIds: [BigInt!]
+	values: [BigInt!]
+}
+type _ApprovalForAll @entity {
+	id: ID!
+	account: Bytes! 
+	operator: Bytes!
+	approved: Boolean!
+}
+type _URI @entity {
+	id: ID!
+	uri: String! 
+	cryptoravesTokenId: BigInt!
 }

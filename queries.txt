@@ -46,3 +46,9 @@ curl -d '{"query": "{ newUsers(first: 5){ id userId userName cryptoravesAddress 
 curl -d '{"query": "{ usernameChanges(first: 5){ id userId userName } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ imageChanges(first: 5){ id userId imageUrl } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
+
+#cryptoraves Token Contract
+curl -d '{"query": "{ transferSingles(first: 5){ id operator from to cryptoravesTokenId value} }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ transferBatches(first: 5){ id operator from to cryptoravesTokenIds values} }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ approvalForAlls(first: 5){ id account operator approved } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ uRIs(first: 5){ id uri cryptoravesAddress } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph

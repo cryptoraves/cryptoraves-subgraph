@@ -435,3 +435,281 @@ export class _ImageChange extends Entity {
     this.set("imageUrl", Value.fromString(value));
   }
 }
+
+export class _TransferSingle extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _TransferSingle entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _TransferSingle entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_TransferSingle", id.toString(), this);
+  }
+
+  static load(id: string): _TransferSingle | null {
+    return store.get("_TransferSingle", id) as _TransferSingle | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get operator(): Bytes {
+    let value = this.get("operator");
+    return value.toBytes();
+  }
+
+  set operator(value: Bytes) {
+    this.set("operator", Value.fromBytes(value));
+  }
+
+  get from(): Bytes {
+    let value = this.get("from");
+    return value.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
+  get to(): Bytes {
+    let value = this.get("to");
+    return value.toBytes();
+  }
+
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    let value = this.get("cryptoravesTokenId");
+    return value.toBigInt();
+  }
+
+  set cryptoravesTokenId(value: BigInt) {
+    this.set("cryptoravesTokenId", Value.fromBigInt(value));
+  }
+
+  get value(): BigInt {
+    let value = this.get("value");
+    return value.toBigInt();
+  }
+
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
+  }
+}
+
+export class _TransferBatch extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _TransferBatch entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _TransferBatch entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_TransferBatch", id.toString(), this);
+  }
+
+  static load(id: string): _TransferBatch | null {
+    return store.get("_TransferBatch", id) as _TransferBatch | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get operator(): Bytes {
+    let value = this.get("operator");
+    return value.toBytes();
+  }
+
+  set operator(value: Bytes) {
+    this.set("operator", Value.fromBytes(value));
+  }
+
+  get from(): Bytes {
+    let value = this.get("from");
+    return value.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
+  get to(): Bytes {
+    let value = this.get("to");
+    return value.toBytes();
+  }
+
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
+  }
+
+  get cryptoravesTokenIds(): Array<BigInt> | null {
+    let value = this.get("cryptoravesTokenIds");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigIntArray();
+    }
+  }
+
+  set cryptoravesTokenIds(value: Array<BigInt> | null) {
+    if (value === null) {
+      this.unset("cryptoravesTokenIds");
+    } else {
+      this.set(
+        "cryptoravesTokenIds",
+        Value.fromBigIntArray(value as Array<BigInt>)
+      );
+    }
+  }
+
+  get values(): Array<BigInt> | null {
+    let value = this.get("values");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigIntArray();
+    }
+  }
+
+  set values(value: Array<BigInt> | null) {
+    if (value === null) {
+      this.unset("values");
+    } else {
+      this.set("values", Value.fromBigIntArray(value as Array<BigInt>));
+    }
+  }
+}
+
+export class _ApprovalForAll extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _ApprovalForAll entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _ApprovalForAll entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_ApprovalForAll", id.toString(), this);
+  }
+
+  static load(id: string): _ApprovalForAll | null {
+    return store.get("_ApprovalForAll", id) as _ApprovalForAll | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get account(): Bytes {
+    let value = this.get("account");
+    return value.toBytes();
+  }
+
+  set account(value: Bytes) {
+    this.set("account", Value.fromBytes(value));
+  }
+
+  get operator(): Bytes {
+    let value = this.get("operator");
+    return value.toBytes();
+  }
+
+  set operator(value: Bytes) {
+    this.set("operator", Value.fromBytes(value));
+  }
+
+  get approved(): boolean {
+    let value = this.get("approved");
+    return value.toBoolean();
+  }
+
+  set approved(value: boolean) {
+    this.set("approved", Value.fromBoolean(value));
+  }
+}
+
+export class _URI extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _URI entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _URI entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_URI", id.toString(), this);
+  }
+
+  static load(id: string): _URI | null {
+    return store.get("_URI", id) as _URI | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get uri(): string {
+    let value = this.get("uri");
+    return value.toString();
+  }
+
+  set uri(value: string) {
+    this.set("uri", Value.fromString(value));
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    let value = this.get("cryptoravesTokenId");
+    return value.toBigInt();
+  }
+
+  set cryptoravesTokenId(value: BigInt) {
+    this.set("cryptoravesTokenId", Value.fromBigInt(value));
+  }
+}
