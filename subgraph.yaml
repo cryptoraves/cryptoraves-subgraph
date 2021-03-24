@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: '0x9DA62b0f2fa8f54D2E5E1a779bdb03F01A68898f' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress1 here
+      address: '0x1d98B395127EA2CBd22767d8ED88E4d0B777983D' #run truffle test in web3-tools, then cut and paste TokenManagementContractAddress1 here
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -29,7 +29,7 @@ dataSources:
     name: TransactionManagement
     network: mainnet
     source:
-      address: '0xE5a26260c67f082325561321952F8ee563DaF30c' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
+      address: '0x823862C48C65Aa1e32620C8A054CFae662e02361' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
       abi: TransactionManagement
     mapping:
       kind: ethereum/events
@@ -50,7 +50,7 @@ dataSources:
     name: UserManagement
     network: mainnet
     source:
-      address: '0x968e6ae8C45f495b49899D9EeDca57591D806D52' #run truffle test in web3-tools, then cut and paste UserManagementContractAddress1 here
+      address: '0x48020D42c528a3Affc247fA5E14A6b2cB661527a' #run truffle test in web3-tools, then cut and paste UserManagementContractAddress1 here
       abi: UserManagement
     mapping:
       kind: ethereum/events
@@ -73,7 +73,7 @@ dataSources:
     name: CryptoravesToken
     network: mainnet
     source:
-      address: '0xaBD9951E74f09244fc478B82fAB9bDb3F749fDF1' #run truffle test in web3-tools, then cut and paste CryptoravesTokenContractAddress1 here
+      address: '0x1e455c6568cB7Bd3c5BDf0444C2666b7d47EaD9F' #run truffle test in web3-tools, then cut and paste CryptoravesTokenContractAddress1 here
       abi: CryptoravesToken
     mapping:
       kind: ethereum/events
