@@ -1,23 +1,9 @@
-import { Transfer, Deposit, Withdraw } from '../generated/TokenManagement/TokenManagement'
+import { Deposit, Withdraw } from '../generated/TokenManagement/TokenManagement'
 
-import { _Transfer, _Deposit, _Withdraw } from "../generated/schema"
+import { _Deposit, _Withdraw } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
-export function handleTransfer(event: Transfer): void {
-  let id = event.transaction.hash.toHex()
-
-  let entity = _Transfer.load(id)
-  if (entity == null) {
-    entity = new _Transfer(id)
-  }
-  entity.from = event.params._from
-  entity.to = event.params._to
-  entity.amount = event.params._value
-  entity.tokenId = event.params._tokenId
-  entity.save()
-  
-}
 
 export function handleDeposit(event: Deposit): void {
 

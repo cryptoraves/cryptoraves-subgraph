@@ -12,73 +12,6 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class _Transfer extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save _Transfer entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save _Transfer entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("_Transfer", id.toString(), this);
-  }
-
-  static load(id: string): _Transfer | null {
-    return store.get("_Transfer", id) as _Transfer | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get from(): Bytes {
-    let value = this.get("from");
-    return value.toBytes();
-  }
-
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
-  }
-
-  get to(): Bytes {
-    let value = this.get("to");
-    return value.toBytes();
-  }
-
-  set to(value: Bytes) {
-    this.set("to", Value.fromBytes(value));
-  }
-
-  get amount(): BigInt {
-    let value = this.get("amount");
-    return value.toBigInt();
-  }
-
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
-  }
-
-  get tokenId(): BigInt {
-    let value = this.get("tokenId");
-    return value.toBigInt();
-  }
-
-  set tokenId(value: BigInt) {
-    this.set("tokenId", Value.fromBigInt(value));
-  }
-}
-
 export class _Deposit extends Entity {
   constructor(id: string) {
     super();
@@ -222,6 +155,82 @@ export class _Withdraw extends Entity {
   }
 }
 
+export class _Transfer extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _Transfer entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _Transfer entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_Transfer", id.toString(), this);
+  }
+
+  static load(id: string): _Transfer | null {
+    return store.get("_Transfer", id) as _Transfer | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get from(): Bytes {
+    let value = this.get("from");
+    return value.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
+  get to(): Bytes {
+    let value = this.get("to");
+    return value.toBytes();
+  }
+
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get tweetId(): BigInt {
+    let value = this.get("tweetId");
+    return value.toBigInt();
+  }
+
+  set tweetId(value: BigInt) {
+    this.set("tweetId", Value.fromBigInt(value));
+  }
+}
+
 export class _HeresMyAddress extends Entity {
   constructor(id: string) {
     super();
@@ -268,6 +277,15 @@ export class _HeresMyAddress extends Entity {
 
   set cryptoravesAddress(value: Bytes) {
     this.set("cryptoravesAddress", Value.fromBytes(value));
+  }
+
+  get tweetId(): BigInt {
+    let value = this.get("tweetId");
+    return value.toBigInt();
+  }
+
+  set tweetId(value: BigInt) {
+    this.set("tweetId", Value.fromBigInt(value));
   }
 }
 
