@@ -29,5 +29,6 @@ export function handleWithdraw(event: Withdraw): void {
   entity.value = event.params._value
   entity.tokenAddress = event.params._token
   entity.cryptoravesTokenId = event.params.cryptoravesTokenId
+  entity.ercType = event.params._ercType
   entity.save()
 }

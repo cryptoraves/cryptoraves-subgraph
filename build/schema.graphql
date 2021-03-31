@@ -12,6 +12,7 @@ type _Withdraw @entity {
 	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
+	ercType: BigInt!
 }
 
 

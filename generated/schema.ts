@@ -153,6 +153,15 @@ export class _Withdraw extends Entity {
   set cryptoravesTokenId(value: BigInt) {
     this.set("cryptoravesTokenId", Value.fromBigInt(value));
   }
+
+  get ercType(): BigInt {
+    let value = this.get("ercType");
+    return value.toBigInt();
+  }
+
+  set ercType(value: BigInt) {
+    this.set("ercType", Value.fromBigInt(value));
+  }
 }
 
 export class _Transfer extends Entity {

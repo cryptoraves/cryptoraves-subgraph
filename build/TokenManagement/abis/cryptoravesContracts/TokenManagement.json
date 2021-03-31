@@ -92,6 +92,12 @@
         "internalType": "uint256",
         "name": "cryptoravesTokenId",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_ercType",
+        "type": "uint256"
       }
     ],
     "name": "Withdraw",
@@ -441,6 +447,11 @@
         "internalType": "address",
         "name": "_contract",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isManagedWithdraw",
+        "type": "bool"
       }
     ],
     "name": "withdrawERC20",
@@ -466,6 +477,11 @@
         "internalType": "address",
         "name": "_contract",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isManagedWithdraw",
+        "type": "bool"
       }
     ],
     "name": "withdrawERC721",

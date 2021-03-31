@@ -94,6 +94,10 @@ export class Withdraw__Params {
   get cryptoravesTokenId(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
+
+  get _ercType(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
 }
 
 export class TokenManagement__managedTokenListByAddressResult {
@@ -988,6 +992,10 @@ export class WithdrawERC20Call__Inputs {
   get _contract(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
+
+  get _isManagedWithdraw(): boolean {
+    return this._call.inputValues[2].value.toBoolean();
+  }
 }
 
 export class WithdrawERC20Call__Outputs {
@@ -1025,6 +1033,10 @@ export class WithdrawERC721Call__Inputs {
 
   get _contract(): Address {
     return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _isManagedWithdraw(): boolean {
+    return this._call.inputValues[2].value.toBoolean();
   }
 }
 

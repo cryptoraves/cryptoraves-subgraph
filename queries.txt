@@ -1,12 +1,12 @@
 #fresh setup
-ganache-cli -h 0.0.0.0 -l 20000000
+ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "cabin regret chest donate above loop type forget pond equip physical like"
 cd graph-node/docker
 sudo rm -R data/postgres
 docker-compose up
 
 cd ~/web3-tools
 truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
-deployPerformanceTokens.sh
+./deployPerformanceTokens.sh
 
 yarn codegen
 yarn build 
@@ -15,6 +15,7 @@ yarn deploy-local
 
 # TokenManagement Contract
 curl -d '{"query": "{ deposits(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ withdraws(first: 5){ id to value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
 #Transaction Management Contract
 curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId tweetId } }"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
