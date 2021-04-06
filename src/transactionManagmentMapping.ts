@@ -16,6 +16,7 @@ export function handleTransfer(event: Transfer): void {
   entity.amount = event.params._value
   entity.tokenId = event.params._tokenId
   entity.tweetId = event.params._tweetId
+  entity.fromTo = entity.from.toString().concat(entity.from.toString())
   entity.save()
   
 }

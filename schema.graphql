@@ -24,6 +24,7 @@ type _Transfer @entity {
 	amount: BigInt!
 	tokenId: BigInt!
 	tweetId: BigInt!
+	fromTo: String!
 }
 type _HeresMyAddress @entity {
 	id: ID!
@@ -46,11 +47,13 @@ type _UsernameChange @entity {
 	id: ID!
 	userId: BigInt! 
 	userName: String!
+	blockNumber: BigInt!
 }
 type _ImageChange @entity {
 	id: ID!
 	userId: BigInt! 
 	imageUrl: String!
+	blockNumber: BigInt!
 }
 
 

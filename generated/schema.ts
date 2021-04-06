@@ -238,6 +238,15 @@ export class _Transfer extends Entity {
   set tweetId(value: BigInt) {
     this.set("tweetId", Value.fromBigInt(value));
   }
+
+  get fromTo(): string {
+    let value = this.get("fromTo");
+    return value.toString();
+  }
+
+  set fromTo(value: string) {
+    this.set("fromTo", Value.fromString(value));
+  }
 }
 
 export class _HeresMyAddress extends Entity {
@@ -412,6 +421,15 @@ export class _UsernameChange extends Entity {
   set userName(value: string) {
     this.set("userName", Value.fromString(value));
   }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class _ImageChange extends Entity {
@@ -460,6 +478,15 @@ export class _ImageChange extends Entity {
 
   set imageUrl(value: string) {
     this.set("imageUrl", Value.fromString(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 

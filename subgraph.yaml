@@ -64,9 +64,9 @@ dataSources:
       eventHandlers:
         - event: NewUser(uint256,string,address,string)
           handler: handleNewUser
-        - event: UsernameChange(uint256,string)
+        - event: UsernameChange(uint256,string,uint256)
           handler: handleUsernameChange
-        - event: ImageChange(uint256,string)
+        - event: ImageChange(uint256,string,uint256)
           handler: handleImageChange
       file: ./src/userManagmentMapping.ts
   - kind: ethereum/contract

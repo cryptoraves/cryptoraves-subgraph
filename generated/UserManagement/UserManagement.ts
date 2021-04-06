@@ -30,6 +30,10 @@ export class ImageChange__Params {
   get imageUrl(): string {
     return this._event.parameters[1].value.toString();
   }
+
+  get blockNumber(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
 }
 
 export class NewUser extends ethereum.Event {
@@ -81,6 +85,10 @@ export class UsernameChange__Params {
 
   get _handle(): string {
     return this._event.parameters[1].value.toString();
+  }
+
+  get blockNumber(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 }
 

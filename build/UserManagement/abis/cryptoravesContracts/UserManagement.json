@@ -18,6 +18,12 @@
         "internalType": "string",
         "name": "imageUrl",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "blockNumber",
+        "type": "uint256"
       }
     ],
     "name": "ImageChange",
@@ -68,6 +74,12 @@
         "internalType": "string",
         "name": "_handle",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "blockNumber",
+        "type": "uint256"
       }
     ],
     "name": "UsernameChange",

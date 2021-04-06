@@ -26,6 +26,7 @@ export function handleUsernameChange(event: UsernameChange): void {
   }
   entity.userId = event.params._userId
   entity.userName = event.params._handle
+  entity.blockNumber = event.params.blockNumber
   entity.save()
 }
 
@@ -38,5 +39,6 @@ export function handleImageChange(event: ImageChange): void {
   }
   entity.userId = event.params._userId
   entity.imageUrl = event.params.imageUrl
+  entity.blockNumber = event.params.blockNumber
   entity.save()
 }
