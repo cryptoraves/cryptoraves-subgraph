@@ -66,6 +66,58 @@ export class Deposit__Params {
   }
 }
 
+export class Token extends ethereum.Event {
+  get params(): Token__Params {
+    return new Token__Params(this);
+  }
+}
+
+export class Token__Params {
+  _event: Token;
+
+  constructor(event: Token) {
+    this._event = event;
+  }
+
+  get param0(): TokenParam0Struct {
+    return this._event.parameters[0].value.toTuple() as TokenParam0Struct;
+  }
+}
+
+export class TokenParam0Struct extends ethereum.Tuple {
+  get managedTokenBaseId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get isManagedToken(): boolean {
+    return this[1].toBoolean();
+  }
+
+  get ercType(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get totalSupply(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get name(): string {
+    return this[4].toString();
+  }
+
+  get symbol(): string {
+    return this[5].toString();
+  }
+
+  get decimals(): BigInt {
+    return this[6].toBigInt();
+  }
+
+  get emoji(): string {
+    return this[7].toString();
+  }
+}
+
 export class Withdraw extends ethereum.Event {
   get params(): Withdraw__Params {
     return new Withdraw__Params(this);
@@ -100,14 +152,49 @@ export class Withdraw__Params {
   }
 }
 
+export class TokenManagement__getERCspecsResultValue0Struct extends ethereum.Tuple {
+  get managedTokenBaseId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get isManagedToken(): boolean {
+    return this[1].toBoolean();
+  }
+
+  get ercType(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get totalSupply(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get name(): string {
+    return this[4].toString();
+  }
+
+  get symbol(): string {
+    return this[5].toString();
+  }
+
+  get decimals(): BigInt {
+    return this[6].toBigInt();
+  }
+
+  get emoji(): string {
+    return this[7].toString();
+  }
+}
+
 export class TokenManagement__managedTokenListByAddressResult {
   value0: BigInt;
   value1: boolean;
   value2: BigInt;
   value3: BigInt;
   value4: string;
-  value5: BigInt;
-  value6: string;
+  value5: string;
+  value6: BigInt;
+  value7: string;
 
   constructor(
     value0: BigInt,
@@ -115,8 +202,9 @@ export class TokenManagement__managedTokenListByAddressResult {
     value2: BigInt,
     value3: BigInt,
     value4: string,
-    value5: BigInt,
-    value6: string
+    value5: string,
+    value6: BigInt,
+    value7: string
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -125,6 +213,7 @@ export class TokenManagement__managedTokenListByAddressResult {
     this.value4 = value4;
     this.value5 = value5;
     this.value6 = value6;
+    this.value7 = value7;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -134,8 +223,9 @@ export class TokenManagement__managedTokenListByAddressResult {
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
     map.set("value4", ethereum.Value.fromString(this.value4));
-    map.set("value5", ethereum.Value.fromUnsignedBigInt(this.value5));
-    map.set("value6", ethereum.Value.fromString(this.value6));
+    map.set("value5", ethereum.Value.fromString(this.value5));
+    map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
+    map.set("value7", ethereum.Value.fromString(this.value7));
     return map;
   }
 }
@@ -145,52 +235,41 @@ export class TokenManagement extends ethereum.SmartContract {
     return new TokenManagement("TokenManagement", address);
   }
 
-  getSymbolOf3rdPartyToken(_tknAddr: Address): string {
+  getERCspecs(
+    _tknAddr: Address,
+    _ercType: BigInt
+  ): TokenManagement__getERCspecsResultValue0Struct {
     let result = super.call(
-      "getSymbolOf3rdPartyToken",
-      "getSymbolOf3rdPartyToken(address):(string)",
-      [ethereum.Value.fromAddress(_tknAddr)]
+      "getERCspecs",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string))",
+      [
+        ethereum.Value.fromAddress(_tknAddr),
+        ethereum.Value.fromUnsignedBigInt(_ercType)
+      ]
     );
 
-    return result[0].toString();
+    return result[0].toTuple() as TokenManagement__getERCspecsResultValue0Struct;
   }
 
-  try_getSymbolOf3rdPartyToken(_tknAddr: Address): ethereum.CallResult<string> {
+  try_getERCspecs(
+    _tknAddr: Address,
+    _ercType: BigInt
+  ): ethereum.CallResult<TokenManagement__getERCspecsResultValue0Struct> {
     let result = super.tryCall(
-      "getSymbolOf3rdPartyToken",
-      "getSymbolOf3rdPartyToken(address):(string)",
-      [ethereum.Value.fromAddress(_tknAddr)]
+      "getERCspecs",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string))",
+      [
+        ethereum.Value.fromAddress(_tknAddr),
+        ethereum.Value.fromUnsignedBigInt(_ercType)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  getTotalSupplyOf3rdPartyToken(_tknAddr: Address): BigInt {
-    let result = super.call(
-      "getTotalSupplyOf3rdPartyToken",
-      "getTotalSupplyOf3rdPartyToken(address):(uint256)",
-      [ethereum.Value.fromAddress(_tknAddr)]
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as TokenManagement__getERCspecsResultValue0Struct
     );
-
-    return result[0].toBigInt();
-  }
-
-  try_getTotalSupplyOf3rdPartyToken(
-    _tknAddr: Address
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getTotalSupplyOf3rdPartyToken",
-      "getTotalSupplyOf3rdPartyToken(address):(uint256)",
-      [ethereum.Value.fromAddress(_tknAddr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getTransactionManagerAddress(): Address {
@@ -259,7 +338,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__managedTokenListByAddressResult {
     let result = super.call(
       "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,bool,uint256,uint256,string,uint256,string)",
+      "managedTokenListByAddress(address):(uint256,bool,uint256,uint256,string,string,uint256,string)",
       [ethereum.Value.fromAddress(param0)]
     );
 
@@ -269,8 +348,9 @@ export class TokenManagement extends ethereum.SmartContract {
       result[2].toBigInt(),
       result[3].toBigInt(),
       result[4].toString(),
-      result[5].toBigInt(),
-      result[6].toString()
+      result[5].toString(),
+      result[6].toBigInt(),
+      result[7].toString()
     );
   }
 
@@ -279,7 +359,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__managedTokenListByAddressResult> {
     let result = super.tryCall(
       "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,bool,uint256,uint256,string,uint256,string)",
+      "managedTokenListByAddress(address):(uint256,bool,uint256,uint256,string,string,uint256,string)",
       [ethereum.Value.fromAddress(param0)]
     );
     if (result.reverted) {
@@ -293,8 +373,9 @@ export class TokenManagement extends ethereum.SmartContract {
         value[2].toBigInt(),
         value[3].toBigInt(),
         value[4].toString(),
-        value[5].toBigInt(),
-        value[6].toString()
+        value[5].toString(),
+        value[6].toBigInt(),
+        value[7].toString()
       )
     );
   }
@@ -905,12 +986,8 @@ export class DropCryptoCall__Inputs {
     return this._call.inputValues[2].value.toBigInt();
   }
 
-  get _totalSupply(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-
   get data(): Bytes {
-    return this._call.inputValues[4].value.toBytes();
+    return this._call.inputValues[3].value.toBytes();
   }
 }
 

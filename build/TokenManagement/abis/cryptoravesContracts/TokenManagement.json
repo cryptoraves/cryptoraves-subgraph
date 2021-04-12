@@ -70,6 +70,61 @@
     "anonymous": false,
     "inputs": [
       {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "managedTokenBaseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManagedToken",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ercType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "decimals",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "emoji",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct ERCDepositable.ManagedToken",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "name": "Token",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "_to",
@@ -109,34 +164,61 @@
         "internalType": "address",
         "name": "_tknAddr",
         "type": "address"
-      }
-    ],
-    "name": "getSymbolOf3rdPartyToken",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_tknAddr",
-        "type": "address"
-      }
-    ],
-    "name": "getTotalSupplyOf3rdPartyToken",
-    "outputs": [
+      },
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "_ercType",
         "type": "uint256"
+      }
+    ],
+    "name": "getERCspecs",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "managedTokenBaseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManagedToken",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ercType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "decimals",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "emoji",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct ERCDepositable.ManagedToken",
+        "name": "",
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",
@@ -220,6 +302,11 @@
         "internalType": "uint256",
         "name": "totalSupply",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -383,11 +470,6 @@
       {
         "internalType": "uint256",
         "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_totalSupply",
         "type": "uint256"
       },
       {

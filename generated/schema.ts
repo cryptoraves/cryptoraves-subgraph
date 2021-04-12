@@ -164,6 +164,158 @@ export class _Withdraw extends Entity {
   }
 }
 
+export class _Token extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _Token entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _Token entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_Token", id.toString(), this);
+  }
+
+  static load(id: string): _Token | null {
+    return store.get("_Token", id) as _Token | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    let value = this.get("cryptoravesTokenId");
+    return value.toBigInt();
+  }
+
+  set cryptoravesTokenId(value: BigInt) {
+    this.set("cryptoravesTokenId", Value.fromBigInt(value));
+  }
+
+  get isManagedToken(): boolean {
+    let value = this.get("isManagedToken");
+    return value.toBoolean();
+  }
+
+  set isManagedToken(value: boolean) {
+    this.set("isManagedToken", Value.fromBoolean(value));
+  }
+
+  get ercType(): BigInt {
+    let value = this.get("ercType");
+    return value.toBigInt();
+  }
+
+  set ercType(value: BigInt) {
+    this.set("ercType", Value.fromBigInt(value));
+  }
+
+  get totalSupply(): BigInt {
+    let value = this.get("totalSupply");
+    return value.toBigInt();
+  }
+
+  set totalSupply(value: BigInt) {
+    this.set("totalSupply", Value.fromBigInt(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
+  }
+
+  get symbol(): string {
+    let value = this.get("symbol");
+    return value.toString();
+  }
+
+  set symbol(value: string) {
+    this.set("symbol", Value.fromString(value));
+  }
+
+  get decimals(): BigInt {
+    let value = this.get("decimals");
+    return value.toBigInt();
+  }
+
+  set decimals(value: BigInt) {
+    this.set("decimals", Value.fromBigInt(value));
+  }
+
+  get emoji(): string {
+    let value = this.get("emoji");
+    return value.toString();
+  }
+
+  set emoji(value: string) {
+    this.set("emoji", Value.fromString(value));
+  }
+}
+
+export class _CryptoDropped extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _CryptoDropped entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _CryptoDropped entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_CryptoDropped", id.toString(), this);
+  }
+
+  static load(id: string): _CryptoDropped | null {
+    return store.get("_CryptoDropped", id) as _CryptoDropped | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get user(): Bytes {
+    let value = this.get("user");
+    return value.toBytes();
+  }
+
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    let value = this.get("cryptoravesTokenId");
+    return value.toBigInt();
+  }
+
+  set cryptoravesTokenId(value: BigInt) {
+    this.set("cryptoravesTokenId", Value.fromBigInt(value));
+  }
+}
+
 export class _Transfer extends Entity {
   constructor(id: string) {
     super();
