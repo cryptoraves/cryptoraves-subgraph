@@ -489,13 +489,13 @@ export class _UserData extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get userId(): BigInt {
-    let value = this.get("userId");
+  get twitterUserId(): BigInt {
+    let value = this.get("twitterUserId");
     return value.toBigInt();
   }
 
-  set userId(value: BigInt) {
-    this.set("userId", Value.fromBigInt(value));
+  set twitterUserId(value: BigInt) {
+    this.set("twitterUserId", Value.fromBigInt(value));
   }
 
   get userName(): string {
@@ -523,6 +523,42 @@ export class _UserData extends Entity {
 
   set imageUrl(value: string) {
     this.set("imageUrl", Value.fromString(value));
+  }
+
+  get isManaged(): boolean {
+    let value = this.get("isManaged");
+    return value.toBoolean();
+  }
+
+  set isManaged(value: boolean) {
+    this.set("isManaged", Value.fromBoolean(value));
+  }
+
+  get isUser(): boolean {
+    let value = this.get("isUser");
+    return value.toBoolean();
+  }
+
+  set isUser(value: boolean) {
+    this.set("isUser", Value.fromBoolean(value));
+  }
+
+  get dropped(): boolean {
+    let value = this.get("dropped");
+    return value.toBoolean();
+  }
+
+  set dropped(value: boolean) {
+    this.set("dropped", Value.fromBoolean(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
   }
 }
 

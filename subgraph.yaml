@@ -68,7 +68,7 @@ dataSources:
         - name: UserManagement
           file: ./abis/cryptoravesContracts/UserManagement.json
       eventHandlers:
-        - event: UserData(uint256,string,address,string)
+        - event: UserData((uint256,address,string,string,bool,bool,bool,uint256))
           handler: handleUserData
         - event: UsernameChange(uint256,string)
           handler: handleUsernameChange

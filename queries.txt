@@ -25,7 +25,7 @@ curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId tweetId } }
 curl -d '{"query": "{ heresMyAddresses(first: 5){ id ethAddress cryptoravesAddress } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
 #User Management Contract
-curl -d '{"query": "{ newUsers(first: 5){ id userId userName cryptoravesAddress imageUrl } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ userDatas(first: 5){ id twitterUserId userName cryptoravesAddress imageUrl isManaged isUser dropped tokenId } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ usernameChanges(first: 5){ id userId userName blockNumber } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ imageChanges(first: 5){ id userId imageUrl blockNumber} }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 

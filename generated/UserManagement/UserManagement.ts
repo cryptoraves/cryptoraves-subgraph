@@ -45,20 +45,42 @@ export class UserData__Params {
     this._event = event;
   }
 
-  get _userId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+  get param0(): UserDataParam0Struct {
+    return this._event.parameters[0].value.toTuple() as UserDataParam0Struct;
+  }
+}
+
+export class UserDataParam0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
   }
 
-  get _userName(): string {
-    return this._event.parameters[1].value.toString();
+  get account(): Address {
+    return this[1].toAddress();
   }
 
-  get _address(): Address {
-    return this._event.parameters[2].value.toAddress();
+  get twitterHandle(): string {
+    return this[2].toString();
   }
 
   get imageUrl(): string {
-    return this._event.parameters[3].value.toString();
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
   }
 }
 
@@ -85,22 +107,24 @@ export class UsernameChange__Params {
 }
 
 export class UserManagement__usersResult {
-  value0: Address;
-  value1: string;
+  value0: BigInt;
+  value1: Address;
   value2: string;
-  value3: boolean;
+  value3: string;
   value4: boolean;
   value5: boolean;
-  value6: BigInt;
+  value6: boolean;
+  value7: BigInt;
 
   constructor(
-    value0: Address,
-    value1: string,
+    value0: BigInt,
+    value1: Address,
     value2: string,
-    value3: boolean,
+    value3: string,
     value4: boolean,
     value5: boolean,
-    value6: BigInt
+    value6: boolean,
+    value7: BigInt
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -109,48 +133,54 @@ export class UserManagement__usersResult {
     this.value4 = value4;
     this.value5 = value5;
     this.value6 = value6;
+    this.value7 = value7;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromAddress(this.value0));
-    map.set("value1", ethereum.Value.fromString(this.value1));
+    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
+    map.set("value1", ethereum.Value.fromAddress(this.value1));
     map.set("value2", ethereum.Value.fromString(this.value2));
-    map.set("value3", ethereum.Value.fromBoolean(this.value3));
+    map.set("value3", ethereum.Value.fromString(this.value3));
     map.set("value4", ethereum.Value.fromBoolean(this.value4));
     map.set("value5", ethereum.Value.fromBoolean(this.value5));
-    map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
+    map.set("value6", ethereum.Value.fromBoolean(this.value6));
+    map.set("value7", ethereum.Value.fromUnsignedBigInt(this.value7));
     return map;
   }
 }
 
 export class UserManagement__getUserResultValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
   get account(): Address {
-    return this[0].toAddress();
+    return this[1].toAddress();
   }
 
   get twitterHandle(): string {
-    return this[1].toString();
-  }
-
-  get imageUrl(): string {
     return this[2].toString();
   }
 
-  get isManaged(): boolean {
-    return this[3].toBoolean();
+  get imageUrl(): string {
+    return this[3].toString();
   }
 
-  get isUser(): boolean {
+  get isManaged(): boolean {
     return this[4].toBoolean();
   }
 
-  get dropped(): boolean {
+  get isUser(): boolean {
     return this[5].toBoolean();
   }
 
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
   get tokenId(): BigInt {
-    return this[6].toBigInt();
+    return this[7].toBigInt();
   }
 }
 
@@ -309,25 +339,26 @@ export class UserManagement extends ethereum.SmartContract {
   users(param0: BigInt): UserManagement__usersResult {
     let result = super.call(
       "users",
-      "users(uint256):(address,string,string,bool,bool,bool,uint256)",
+      "users(uint256):(uint256,address,string,string,bool,bool,bool,uint256)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
     return new UserManagement__usersResult(
-      result[0].toAddress(),
-      result[1].toString(),
+      result[0].toBigInt(),
+      result[1].toAddress(),
       result[2].toString(),
-      result[3].toBoolean(),
+      result[3].toString(),
       result[4].toBoolean(),
       result[5].toBoolean(),
-      result[6].toBigInt()
+      result[6].toBoolean(),
+      result[7].toBigInt()
     );
   }
 
   try_users(param0: BigInt): ethereum.CallResult<UserManagement__usersResult> {
     let result = super.tryCall(
       "users",
-      "users(uint256):(address,string,string,bool,bool,bool,uint256)",
+      "users(uint256):(uint256,address,string,string,bool,bool,bool,uint256)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -336,13 +367,14 @@ export class UserManagement extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       new UserManagement__usersResult(
-        value[0].toAddress(),
-        value[1].toString(),
+        value[0].toBigInt(),
+        value[1].toAddress(),
         value[2].toString(),
-        value[3].toBoolean(),
+        value[3].toString(),
         value[4].toBoolean(),
         value[5].toBoolean(),
-        value[6].toBigInt()
+        value[6].toBoolean(),
+        value[7].toBigInt()
       )
     );
   }
@@ -560,7 +592,7 @@ export class UserManagement extends ethereum.SmartContract {
   getUser(_userId: BigInt): UserManagement__getUserResultValue0Struct {
     let result = super.call(
       "getUser",
-      "getUser(uint256):((address,string,string,bool,bool,bool,uint256))",
+      "getUser(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
       [ethereum.Value.fromUnsignedBigInt(_userId)]
     );
 
@@ -572,7 +604,7 @@ export class UserManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<UserManagement__getUserResultValue0Struct> {
     let result = super.tryCall(
       "getUser",
-      "getUser(uint256):((address,string,string,bool,bool,bool,uint256))",
+      "getUser(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
       [ethereum.Value.fromUnsignedBigInt(_userId)]
     );
     if (result.reverted) {

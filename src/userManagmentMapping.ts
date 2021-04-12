@@ -4,25 +4,21 @@ import { _UserData } from "../generated/schema"
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
 export function handleUserData(event: UserData): void {
-  let id = event.params._userId.toHex()
+  let id = event.params.param0.twitterUserId.toHex()
 
   let entity = _UserData.load(id)
   if (entity == null) {
     entity = new _UserData(id)
   }
-/*
-    address account;
-    string twitterHandle;
-    string imageUrl;
-    bool isManaged;
-    bool isUser;
-    bool dropped;
-    uint256 tokenId;
-*/
-  entity.userId = event.params._userId
-  entity.userName = event.params._userName
-  entity.cryptoravesAddress = event.params._address
-  entity.imageUrl = event.params.imageUrl
+
+  entity.twitterUserId = event.params.param0.twitterUserId
+  entity.userName = event.params.param0.twitterHandle
+  entity.cryptoravesAddress = event.params.param0.account
+  entity.imageUrl = event.params.param0.imageUrl
+  entity.isManaged = event.params.param0.isManaged
+  entity.isUser = event.params.param0.isUser
+  entity.dropped = event.params.param0.dropped
+  entity.tokenId = event.params.param0.tokenId
   entity.save()
 }
 

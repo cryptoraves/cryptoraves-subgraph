@@ -55,10 +55,14 @@ type _HeresMyAddress @entity {
 #userManagement
 type _UserData @entity {
 	id: ID!
-	userId: BigInt! 
+	twitterUserId: BigInt! 
 	userName: String!
 	cryptoravesAddress: Bytes!
 	imageUrl: String!
+	isManaged: Boolean!
+    isUser: Boolean!
+    dropped: Boolean!
+    tokenId: BigInt!
 }
 
 #cryptoravesToken
