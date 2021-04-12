@@ -1,3 +1,4 @@
+#tokenManagement
 type _Deposit @entity {
 	id: ID!
 	from: Bytes! 
@@ -32,7 +33,7 @@ type _CryptoDropped @entity {
 }
 
 
-
+#transactionManagement
 type _Transfer @entity {
 	id: ID!
 	from: Bytes! 
@@ -51,29 +52,16 @@ type _HeresMyAddress @entity {
 
 
 
-
-type _NewUser @entity {
+#userManagement
+type _UserData @entity {
 	id: ID!
 	userId: BigInt! 
 	userName: String!
 	cryptoravesAddress: Bytes!
 	imageUrl: String!
 }
-type _UsernameChange @entity {
-	id: ID!
-	userId: BigInt! 
-	userName: String!
-	blockNumber: BigInt!
-}
-type _ImageChange @entity {
-	id: ID!
-	userId: BigInt! 
-	imageUrl: String!
-	blockNumber: BigInt!
-}
 
-
-
+#cryptoravesToken
 type _TransferSingle @entity {
 	id: ID!
 	operator: Bytes! 

@@ -30,22 +30,18 @@ export class ImageChange__Params {
   get imageUrl(): string {
     return this._event.parameters[1].value.toString();
   }
+}
 
-  get blockNumber(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
+export class UserData extends ethereum.Event {
+  get params(): UserData__Params {
+    return new UserData__Params(this);
   }
 }
 
-export class NewUser extends ethereum.Event {
-  get params(): NewUser__Params {
-    return new NewUser__Params(this);
-  }
-}
+export class UserData__Params {
+  _event: UserData;
 
-export class NewUser__Params {
-  _event: NewUser;
-
-  constructor(event: NewUser) {
+  constructor(event: UserData) {
     this._event = event;
   }
 
@@ -85,10 +81,6 @@ export class UsernameChange__Params {
 
   get _handle(): string {
     return this._event.parameters[1].value.toString();
-  }
-
-  get blockNumber(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
   }
 }
 

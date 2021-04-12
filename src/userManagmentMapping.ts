@@ -1,15 +1,24 @@
-import { NewUser, UsernameChange, ImageChange} from '../generated/UserManagement/UserManagement'
-import { _NewUser, _UsernameChange, _ImageChange } from "../generated/schema"
+import { UserData, UsernameChange, ImageChange} from '../generated/UserManagement/UserManagement'
+import { _UserData } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
-export function handleNewUser(event: NewUser): void {
-  let id = event.transaction.hash.toHex()
+export function handleUserData(event: UserData): void {
+  let id = event.params._userId.toHex()
 
-  let entity = _NewUser.load(id)
+  let entity = _UserData.load(id)
   if (entity == null) {
-    entity = new _NewUser(id)
+    entity = new _UserData(id)
   }
+/*
+    address account;
+    string twitterHandle;
+    string imageUrl;
+    bool isManaged;
+    bool isUser;
+    bool dropped;
+    uint256 tokenId;
+*/
   entity.userId = event.params._userId
   entity.userName = event.params._userName
   entity.cryptoravesAddress = event.params._address
@@ -18,27 +27,19 @@ export function handleNewUser(event: NewUser): void {
 }
 
 export function handleUsernameChange(event: UsernameChange): void {
-  let id = event.transaction.hash.toHex()
+  let id = event.params._userId.toHex()
 
-  let entity = _UsernameChange.load(id)
-  if (entity == null) {
-    entity = new _UsernameChange(id)
-  }
-  entity.userId = event.params._userId
+  let entity = _UserData.load(id)
+
   entity.userName = event.params._handle
-  entity.blockNumber = event.params.blockNumber
   entity.save()
 }
 
 export function handleImageChange(event: ImageChange): void {
-  let id = event.transaction.hash.toHex()
+  let id = event.params._userId.toHex()
 
-  let entity = _ImageChange.load(id)
-  if (entity == null) {
-    entity = new _ImageChange(id)
-  }
-  entity.userId = event.params._userId
+  let entity = _UserData.load(id)
+
   entity.imageUrl = event.params.imageUrl
-  entity.blockNumber = event.params.blockNumber
   entity.save()
 }

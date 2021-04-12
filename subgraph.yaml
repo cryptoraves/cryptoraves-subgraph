@@ -68,11 +68,11 @@ dataSources:
         - name: UserManagement
           file: ./abis/cryptoravesContracts/UserManagement.json
       eventHandlers:
-        - event: NewUser(uint256,string,address,string)
-          handler: handleNewUser
-        - event: UsernameChange(uint256,string,uint256)
+        - event: UserData(uint256,string,address,string)
+          handler: handleUserData
+        - event: UsernameChange(uint256,string)
           handler: handleUsernameChange
-        - event: ImageChange(uint256,string,uint256)
+        - event: ImageChange(uint256,string)
           handler: handleImageChange
       file: ./src/userManagmentMapping.ts
   - kind: ethereum/contract
