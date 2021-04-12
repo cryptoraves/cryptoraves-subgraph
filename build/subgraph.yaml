@@ -24,8 +24,10 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,indexed address,indexed uint256,uint256)
           handler: handleWithdraw
-        - event: Token((uint256,bool,uint256,uint256,string,string,uint256,string))
+        - event: Token((uint256,uint256,bool,uint256,uint256,string,string,uint256,string))
           handler: handleToken
+        - event: Emoji(uint256,string)
+          handler: handleEmoji
         - event: CryptoDropped(address,uint256)
           handler: handleCryptoDropped
       file: TokenManagement/TokenManagement.wasm

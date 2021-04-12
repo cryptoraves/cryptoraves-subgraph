@@ -1,4 +1,4 @@
-import { Deposit, Withdraw, CryptoDropped, Token } from '../generated/TokenManagement/TokenManagement'
+import { Deposit, Withdraw, CryptoDropped, Token, Emoji } from '../generated/TokenManagement/TokenManagement'
 
 import { _Deposit, _Withdraw, _CryptoDropped, _Token} from "../generated/schema"
 
@@ -44,14 +44,14 @@ export function handleCryptoDropped(event: CryptoDropped): void {
 }
 export function handleToken(event: Token): void {
 
-  let id = event.transaction.hash.toHex()
+  let id = event.params.param0.cryptoravesTokenId.toHex()
   let entity = _Token.load(id)
   if (entity == null) {
     entity = new _Token(id)
   }
   //log.debug("Create entity {}", [id])
  
-  entity.cryptoravesTokenId = event.params.param0.managedTokenBaseId
+  entity.cryptoravesTokenId = event.params.param0.cryptoravesTokenId
   entity.isManagedToken = event.params.param0.isManagedToken
   entity.ercType = event.params.param0.ercType
   entity.totalSupply = event.params.param0.totalSupply
@@ -60,4 +60,13 @@ export function handleToken(event: Token): void {
   entity.decimals = event.params.param0.decimals
   entity.emoji = event.params.param0.emoji
   entity.save()
+}
+
+export function handleEmoji(event: Emoji): void {
+  let id = event.params.cryptoravesTokenId.toHex()
+  let token = _Token.load(id)
+
+  token.emoji = event.params._emoji
+  token.save()
+
 }

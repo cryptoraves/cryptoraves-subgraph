@@ -70,10 +70,34 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "cryptoravesTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_emoji",
+        "type": "string"
+      }
+    ],
+    "name": "Emoji",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "components": [
           {
             "internalType": "uint256",
             "name": "managedTokenBaseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cryptoravesTokenId",
             "type": "uint256"
           },
           {
@@ -178,6 +202,11 @@
           {
             "internalType": "uint256",
             "name": "managedTokenBaseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cryptoravesTokenId",
             "type": "uint256"
           },
           {
@@ -286,6 +315,11 @@
       {
         "internalType": "uint256",
         "name": "managedTokenBaseId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cryptoravesTokenId",
         "type": "uint256"
       },
       {
