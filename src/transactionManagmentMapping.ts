@@ -1,5 +1,5 @@
 import { Transfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
-import { _Transfer, _HeresMyAddress } from "../generated/schema"
+import { _Transfer, _UserData } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
@@ -11,26 +11,22 @@ export function handleTransfer(event: Transfer): void {
   if (entity == null) {
     entity = new _Transfer(id)
   }
-  entity.from = event.params._from
-  entity.to = event.params._to
+  entity.from = event.params._from.toHex()
+  entity.to = event.params._to.toHex()
   entity.amount = event.params._value
   entity.tokenId = event.params._tokenId
   entity.tweetId = event.params._tweetId
-  entity.fromTo = entity.from.toHex().concat(entity.to.toHex())
+  entity.fromTo = event.params._from.toHex().concat(event.params._to.toHex())
   entity.save()
   
 }
 
 export function handleHeresMyAddress(event: HeresMyAddress): void {
-  let id = event.transaction.hash.toHex()
+  let id = event.params._cryptoravesAddress.toHex()
 
-  let entity = _HeresMyAddress.load(id)
-  if (entity == null) {
-    entity = new _HeresMyAddress(id)
-  }
-  entity.ethAddress = event.params._layer1Address
-  entity.cryptoravesAddress = event.params._walletContractAddress
-  entity.tweetId = event.params._tweetId
+  let entity = _UserData.load(id)
+
+  entity.layer1Address = event.params._layer1Address
   entity.save()
   
 }

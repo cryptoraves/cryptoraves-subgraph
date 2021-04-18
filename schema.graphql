@@ -36,18 +36,12 @@ type _CryptoDropped @entity {
 #transactionManagement
 type _Transfer @entity {
 	id: ID!
-	from: Bytes! 
-	to: Bytes!
+	from: _UserData!
+	to: _UserData!
 	amount: BigInt!
 	tokenId: BigInt!
 	tweetId: BigInt!
 	fromTo: String!
-}
-type _HeresMyAddress @entity {
-	id: ID!
-	ethAddress: Bytes! 
-	cryptoravesAddress: Bytes!
-	tweetId: BigInt!
 }
 
 
@@ -63,6 +57,9 @@ type _UserData @entity {
     isUser: Boolean!
     dropped: Boolean!
     tokenId: BigInt!
+
+    #not in .sol struct
+    layer1Address: Bytes
 }
 
 #cryptoravesToken

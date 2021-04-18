@@ -346,22 +346,22 @@ export class _Transfer extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get from(): Bytes {
+  get from(): string {
     let value = this.get("from");
-    return value.toBytes();
+    return value.toString();
   }
 
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
+  set from(value: string) {
+    this.set("from", Value.fromString(value));
   }
 
-  get to(): Bytes {
+  get to(): string {
     let value = this.get("to");
-    return value.toBytes();
+    return value.toString();
   }
 
-  set to(value: Bytes) {
-    this.set("to", Value.fromBytes(value));
+  set to(value: string) {
+    this.set("to", Value.fromString(value));
   }
 
   get amount(): BigInt {
@@ -398,64 +398,6 @@ export class _Transfer extends Entity {
 
   set fromTo(value: string) {
     this.set("fromTo", Value.fromString(value));
-  }
-}
-
-export class _HeresMyAddress extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save _HeresMyAddress entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save _HeresMyAddress entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("_HeresMyAddress", id.toString(), this);
-  }
-
-  static load(id: string): _HeresMyAddress | null {
-    return store.get("_HeresMyAddress", id) as _HeresMyAddress | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get ethAddress(): Bytes {
-    let value = this.get("ethAddress");
-    return value.toBytes();
-  }
-
-  set ethAddress(value: Bytes) {
-    this.set("ethAddress", Value.fromBytes(value));
-  }
-
-  get cryptoravesAddress(): Bytes {
-    let value = this.get("cryptoravesAddress");
-    return value.toBytes();
-  }
-
-  set cryptoravesAddress(value: Bytes) {
-    this.set("cryptoravesAddress", Value.fromBytes(value));
-  }
-
-  get tweetId(): BigInt {
-    let value = this.get("tweetId");
-    return value.toBigInt();
-  }
-
-  set tweetId(value: BigInt) {
-    this.set("tweetId", Value.fromBigInt(value));
   }
 }
 
@@ -559,6 +501,23 @@ export class _UserData extends Entity {
 
   set tokenId(value: BigInt) {
     this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get layer1Address(): Bytes | null {
+    let value = this.get("layer1Address");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set layer1Address(value: Bytes | null) {
+    if (value === null) {
+      this.unset("layer1Address");
+    } else {
+      this.set("layer1Address", Value.fromBytes(value as Bytes));
+    }
   }
 }
 

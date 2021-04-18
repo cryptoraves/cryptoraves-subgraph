@@ -4,7 +4,7 @@ import { _UserData } from "../generated/schema"
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
 export function handleUserData(event: UserData): void {
-  let id = event.params.param0.twitterUserId.toHex()
+  let id = event.params.param0.cryptoravesAddress.toHex()
 
   let entity = _UserData.load(id)
   if (entity == null) {
@@ -13,7 +13,7 @@ export function handleUserData(event: UserData): void {
 
   entity.twitterUserId = event.params.param0.twitterUserId
   entity.userName = event.params.param0.twitterHandle
-  entity.cryptoravesAddress = event.params.param0.account
+  entity.cryptoravesAddress = event.params.param0.cryptoravesAddress
   entity.imageUrl = event.params.param0.imageUrl
   entity.isManaged = event.params.param0.isManaged
   entity.isUser = event.params.param0.isUser
@@ -23,7 +23,7 @@ export function handleUserData(event: UserData): void {
 }
 
 export function handleUsernameChange(event: UsernameChange): void {
-  let id = event.params._userId.toHex()
+  let id = event.params._cryptoravesAddress.toHex()
 
   let entity = _UserData.load(id)
 
@@ -32,7 +32,7 @@ export function handleUsernameChange(event: UsernameChange): void {
 }
 
 export function handleImageChange(event: ImageChange): void {
-  let id = event.params._userId.toHex()
+  let id = event.params._cryptoravesAddress.toHex()
 
   let entity = _UserData.load(id)
 

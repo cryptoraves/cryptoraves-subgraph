@@ -47,7 +47,7 @@ dataSources:
         - name: TransactionManagement
           file: ./abis/cryptoravesContracts/TransactionManagement.json
       eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256,uint256,uint256)
+        - event: Transfer(address,address,uint256,uint256,uint256)
           handler: handleTransfer
         - event: HeresMyAddress(address,address,uint256)
           handler: handleHeresMyAddress
@@ -70,9 +70,9 @@ dataSources:
       eventHandlers:
         - event: UserData((uint256,address,string,string,bool,bool,bool,uint256))
           handler: handleUserData
-        - event: UsernameChange(uint256,string)
+        - event: UsernameChange(address,string)
           handler: handleUsernameChange
-        - event: ImageChange(uint256,string)
+        - event: ImageChange(address,string)
           handler: handleImageChange
       file: ./src/userManagmentMapping.ts
   - kind: ethereum/contract

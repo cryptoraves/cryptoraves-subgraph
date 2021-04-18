@@ -9,9 +9,9 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "_userId",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_cryptoravesAddress",
+        "type": "address"
       },
       {
         "indexed": false,
@@ -35,7 +35,7 @@
           },
           {
             "internalType": "address",
-            "name": "account",
+            "name": "cryptoravesAddress",
             "type": "address"
           },
           {
@@ -83,9 +83,9 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "_userId",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_cryptoravesAddress",
+        "type": "address"
       },
       {
         "indexed": false,
@@ -268,7 +268,7 @@
       },
       {
         "internalType": "address",
-        "name": "account",
+        "name": "cryptoravesAddress",
         "type": "address"
       },
       {
@@ -350,6 +350,68 @@
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_platformUserId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getUserStruct",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "twitterUserId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "cryptoravesAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "twitterHandle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "imageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManaged",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isUser",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "dropped",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct UserManagement.User",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "_userId",
         "type": "uint256"
       },
@@ -367,9 +429,51 @@
     "name": "launchL2Account",
     "outputs": [
       {
-        "internalType": "address",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "twitterUserId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "cryptoravesAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "twitterHandle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "imageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManaged",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isUser",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "dropped",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct UserManagement.User",
         "name": "",
-        "type": "address"
+        "type": "tuple"
       }
     ],
     "stateMutability": "nonpayable",
@@ -454,9 +558,51 @@
     "name": "userAccountCheck",
     "outputs": [
       {
-        "internalType": "address",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "twitterUserId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "cryptoravesAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "twitterHandle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "imageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManaged",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isUser",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "dropped",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct UserManagement.User",
         "name": "",
-        "type": "address"
+        "type": "tuple"
       }
     ],
     "stateMutability": "nonpayable",
@@ -521,7 +667,7 @@
           },
           {
             "internalType": "address",
-            "name": "account",
+            "name": "cryptoravesAddress",
             "type": "address"
           },
           {

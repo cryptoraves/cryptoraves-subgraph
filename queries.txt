@@ -1,18 +1,25 @@
 #fresh setup
 ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "cabin regret chest donate above loop type forget pond equip physical like"
-cd graph-node/docker
-sudo rm -R data/postgres
-docker-compose up
+
 
 cd ~/web3-tools
 truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
 ./deployPerformanceTokens.sh
 
+
+cd ~/graph-node/docker
+sudo rm -R data/postgres
+
+docker-compose up
+
+
 cd ~/cryptoraves-subgraph
 yarn codegen
 yarn build 
 yarn create-local
+
 yarn deploy-local
+
 
 # TokenManagement Contract
 curl -d '{"query": "{ deposits(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
@@ -21,11 +28,11 @@ curl -d '{"query": "{ tokens(first: 5){ id cryptoravesTokenId isManagedToken erc
 curl -d '{"query": "{ cryptoDroppeds(first: 5){ id user cryptoravesTokenId } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
 #Transaction Management Contract
-curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId tweetId } }"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
-curl -d '{"query": "{ heresMyAddresses(first: 5){ id ethAddress cryptoravesAddress } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ transfers(first: 5){ id from to amount tokenId tweetId fromTo } }"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
 #User Management Contract
-curl -d '{"query": "{ userDatas(first: 5){ id twitterUserId userName cryptoravesAddress imageUrl isManaged isUser dropped tokenId } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ transfers(first: 5){ id from { id twitterUserId userName cryptoravesAddress imageUrl isManaged isUser dropped tokenId layer1Address } to { id twitterUserId userName cryptoravesAddress imageUrl isManaged isUser dropped tokenId layer1Address } amount tokenId tweetId fromTo } }"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+
 curl -d '{"query": "{ usernameChanges(first: 5){ id userId userName blockNumber } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ imageChanges(first: 5){ id userId imageUrl blockNumber} }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 

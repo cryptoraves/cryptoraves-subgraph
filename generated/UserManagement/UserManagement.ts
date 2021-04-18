@@ -23,8 +23,8 @@ export class ImageChange__Params {
     this._event = event;
   }
 
-  get _userId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+  get _cryptoravesAddress(): Address {
+    return this._event.parameters[0].value.toAddress();
   }
 
   get imageUrl(): string {
@@ -55,7 +55,7 @@ export class UserDataParam0Struct extends ethereum.Tuple {
     return this[0].toBigInt();
   }
 
-  get account(): Address {
+  get cryptoravesAddress(): Address {
     return this[1].toAddress();
   }
 
@@ -97,8 +97,8 @@ export class UsernameChange__Params {
     this._event = event;
   }
 
-  get _userId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+  get _cryptoravesAddress(): Address {
+    return this._event.parameters[0].value.toAddress();
   }
 
   get _handle(): string {
@@ -150,12 +150,114 @@ export class UserManagement__usersResult {
   }
 }
 
+export class UserManagement__getUserStructResultValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get cryptoravesAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get twitterHandle(): string {
+    return this[2].toString();
+  }
+
+  get imageUrl(): string {
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
+  }
+}
+
+export class UserManagement__launchL2AccountResultValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get cryptoravesAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get twitterHandle(): string {
+    return this[2].toString();
+  }
+
+  get imageUrl(): string {
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
+  }
+}
+
+export class UserManagement__userAccountCheckResultValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get cryptoravesAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get twitterHandle(): string {
+    return this[2].toString();
+  }
+
+  get imageUrl(): string {
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
+  }
+}
+
 export class UserManagement__getUserResultValue0Struct extends ethereum.Tuple {
   get twitterUserId(): BigInt {
     return this[0].toBigInt();
   }
 
-  get account(): Address {
+  get cryptoravesAddress(): Address {
     return this[1].toAddress();
   }
 
@@ -421,14 +523,43 @@ export class UserManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  getUserStruct(
+    _platformUserId: BigInt
+  ): UserManagement__getUserStructResultValue0Struct {
+    let result = super.call(
+      "getUserStruct",
+      "getUserStruct(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
+      [ethereum.Value.fromUnsignedBigInt(_platformUserId)]
+    );
+
+    return result[0].toTuple() as UserManagement__getUserStructResultValue0Struct;
+  }
+
+  try_getUserStruct(
+    _platformUserId: BigInt
+  ): ethereum.CallResult<UserManagement__getUserStructResultValue0Struct> {
+    let result = super.tryCall(
+      "getUserStruct",
+      "getUserStruct(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
+      [ethereum.Value.fromUnsignedBigInt(_platformUserId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as UserManagement__getUserStructResultValue0Struct
+    );
+  }
+
   launchL2Account(
     _userId: BigInt,
     _twitterHandleFrom: string,
     _imageUrl: string
-  ): Address {
+  ): UserManagement__launchL2AccountResultValue0Struct {
     let result = super.call(
       "launchL2Account",
-      "launchL2Account(uint256,string,string):(address)",
+      "launchL2Account(uint256,string,string):((uint256,address,string,string,bool,bool,bool,uint256))",
       [
         ethereum.Value.fromUnsignedBigInt(_userId),
         ethereum.Value.fromString(_twitterHandleFrom),
@@ -436,17 +567,17 @@ export class UserManagement extends ethereum.SmartContract {
       ]
     );
 
-    return result[0].toAddress();
+    return result[0].toTuple() as UserManagement__launchL2AccountResultValue0Struct;
   }
 
   try_launchL2Account(
     _userId: BigInt,
     _twitterHandleFrom: string,
     _imageUrl: string
-  ): ethereum.CallResult<Address> {
+  ): ethereum.CallResult<UserManagement__launchL2AccountResultValue0Struct> {
     let result = super.tryCall(
       "launchL2Account",
-      "launchL2Account(uint256,string,string):(address)",
+      "launchL2Account(uint256,string,string):((uint256,address,string,string,bool,bool,bool,uint256))",
       [
         ethereum.Value.fromUnsignedBigInt(_userId),
         ethereum.Value.fromString(_twitterHandleFrom),
@@ -457,7 +588,9 @@ export class UserManagement extends ethereum.SmartContract {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as UserManagement__launchL2AccountResultValue0Struct
+    );
   }
 
   getLayerOneAccount(_l2Addr: Address): Address {
@@ -510,10 +643,10 @@ export class UserManagement extends ethereum.SmartContract {
     _platformUserId: BigInt,
     _twitterHandle: string,
     _imageUrl: string
-  ): Address {
+  ): UserManagement__userAccountCheckResultValue0Struct {
     let result = super.call(
       "userAccountCheck",
-      "userAccountCheck(uint256,string,string):(address)",
+      "userAccountCheck(uint256,string,string):((uint256,address,string,string,bool,bool,bool,uint256))",
       [
         ethereum.Value.fromUnsignedBigInt(_platformUserId),
         ethereum.Value.fromString(_twitterHandle),
@@ -521,17 +654,17 @@ export class UserManagement extends ethereum.SmartContract {
       ]
     );
 
-    return result[0].toAddress();
+    return result[0].toTuple() as UserManagement__userAccountCheckResultValue0Struct;
   }
 
   try_userAccountCheck(
     _platformUserId: BigInt,
     _twitterHandle: string,
     _imageUrl: string
-  ): ethereum.CallResult<Address> {
+  ): ethereum.CallResult<UserManagement__userAccountCheckResultValue0Struct> {
     let result = super.tryCall(
       "userAccountCheck",
-      "userAccountCheck(uint256,string,string):(address)",
+      "userAccountCheck(uint256,string,string):((uint256,address,string,string,bool,bool,bool,uint256))",
       [
         ethereum.Value.fromUnsignedBigInt(_platformUserId),
         ethereum.Value.fromString(_twitterHandle),
@@ -542,7 +675,9 @@ export class UserManagement extends ethereum.SmartContract {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as UserManagement__userAccountCheckResultValue0Struct
+    );
   }
 
   userHasL1AddressMapped(_userCryptoravesAddr: Address): boolean {
@@ -839,8 +974,42 @@ export class LaunchL2AccountCall__Outputs {
     this._call = call;
   }
 
-  get value0(): Address {
-    return this._call.outputValues[0].value.toAddress();
+  get value0(): LaunchL2AccountCallValue0Struct {
+    return this._call.outputValues[0].value.toTuple() as LaunchL2AccountCallValue0Struct;
+  }
+}
+
+export class LaunchL2AccountCallValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get cryptoravesAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get twitterHandle(): string {
+    return this[2].toString();
+  }
+
+  get imageUrl(): string {
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
   }
 }
 
@@ -915,8 +1084,42 @@ export class UserAccountCheckCall__Outputs {
     this._call = call;
   }
 
-  get value0(): Address {
-    return this._call.outputValues[0].value.toAddress();
+  get value0(): UserAccountCheckCallValue0Struct {
+    return this._call.outputValues[0].value.toTuple() as UserAccountCheckCallValue0Struct;
+  }
+}
+
+export class UserAccountCheckCallValue0Struct extends ethereum.Tuple {
+  get twitterUserId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get cryptoravesAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get twitterHandle(): string {
+    return this[2].toString();
+  }
+
+  get imageUrl(): string {
+    return this[3].toString();
+  }
+
+  get isManaged(): boolean {
+    return this[4].toBoolean();
+  }
+
+  get isUser(): boolean {
+    return this[5].toBoolean();
+  }
+
+  get dropped(): boolean {
+    return this[6].toBoolean();
+  }
+
+  get tokenId(): BigInt {
+    return this[7].toBigInt();
   }
 }
 

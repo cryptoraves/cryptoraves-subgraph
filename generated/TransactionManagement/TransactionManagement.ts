@@ -27,7 +27,7 @@ export class HeresMyAddress__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _walletContractAddress(): Address {
+  get _cryptoravesAddress(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
@@ -67,6 +67,32 @@ export class Transfer__Params {
 
   get _tweetId(): BigInt {
     return this._event.parameters[4].value.toBigInt();
+  }
+}
+
+export class TransactionManagement__initCommandInput_twitterIntsStruct extends ethereum.Tuple {
+  get twitterIdFrom(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get twitterIdTo(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get twitterIdThirdParty(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get amountOrId(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get decimalPlaceLocation(): BigInt {
+    return this[4].toBigInt();
+  }
+
+  get tweetId(): BigInt {
+    return this[5].toBigInt();
   }
 }
 
@@ -231,16 +257,16 @@ export class TransactionManagement extends ethereum.SmartContract {
   }
 
   initCommand(
-    _twitterInts: Array<BigInt>,
+    _twitterInts: TransactionManagement__initCommandInput_twitterIntsStruct,
     _twitterStrings: Array<string>,
     _metaData: Array<Bytes>,
     _functionData: Bytes
   ): boolean {
     let result = super.call(
       "initCommand",
-      "initCommand(uint256[],string[],bytes[],bytes):(bool)",
+      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[],bytes[],bytes):(bool)",
       [
-        ethereum.Value.fromUnsignedBigIntArray(_twitterInts),
+        ethereum.Value.fromTuple(_twitterInts),
         ethereum.Value.fromStringArray(_twitterStrings),
         ethereum.Value.fromBytesArray(_metaData),
         ethereum.Value.fromBytes(_functionData)
@@ -251,16 +277,16 @@ export class TransactionManagement extends ethereum.SmartContract {
   }
 
   try_initCommand(
-    _twitterInts: Array<BigInt>,
+    _twitterInts: TransactionManagement__initCommandInput_twitterIntsStruct,
     _twitterStrings: Array<string>,
     _metaData: Array<Bytes>,
     _functionData: Bytes
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "initCommand",
-      "initCommand(uint256[],string[],bytes[],bytes):(bool)",
+      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[],bytes[],bytes):(bool)",
       [
-        ethereum.Value.fromUnsignedBigIntArray(_twitterInts),
+        ethereum.Value.fromTuple(_twitterInts),
         ethereum.Value.fromStringArray(_twitterStrings),
         ethereum.Value.fromBytesArray(_metaData),
         ethereum.Value.fromBytes(_functionData)
@@ -543,8 +569,8 @@ export class InitCommandCall__Inputs {
     this._call = call;
   }
 
-  get _twitterInts(): Array<BigInt> {
-    return this._call.inputValues[0].value.toBigIntArray();
+  get _twitterInts(): InitCommandCall_twitterIntsStruct {
+    return this._call.inputValues[0].value.toTuple() as InitCommandCall_twitterIntsStruct;
   }
 
   get _twitterStrings(): Array<string> {
@@ -569,6 +595,32 @@ export class InitCommandCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class InitCommandCall_twitterIntsStruct extends ethereum.Tuple {
+  get twitterIdFrom(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get twitterIdTo(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get twitterIdThirdParty(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get amountOrId(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get decimalPlaceLocation(): BigInt {
+    return this[4].toBigInt();
+  }
+
+  get tweetId(): BigInt {
+    return this[5].toBigInt();
   }
 }
 
