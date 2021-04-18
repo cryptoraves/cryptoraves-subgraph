@@ -14,7 +14,7 @@ export function handleTransfer(event: Transfer): void {
   entity.from = event.params._from.toHex()
   entity.to = event.params._to.toHex()
   entity.amount = event.params._value
-  entity.tokenId = event.params._tokenId
+  entity.token = event.params._tokenId.toHex()
   entity.tweetId = event.params._tweetId
   entity.fromTo = event.params._from.toHex().concat(event.params._to.toHex())
   entity.save()

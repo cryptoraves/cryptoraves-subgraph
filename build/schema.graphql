@@ -39,7 +39,7 @@ type _Transfer @entity {
 	from: _UserData!
 	to: _UserData!
 	amount: BigInt!
-	tokenId: BigInt!
+	token: _Token
 	tweetId: BigInt!
 	fromTo: String!
 }

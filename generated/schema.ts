@@ -373,13 +373,21 @@ export class _Transfer extends Entity {
     this.set("amount", Value.fromBigInt(value));
   }
 
-  get tokenId(): BigInt {
-    let value = this.get("tokenId");
-    return value.toBigInt();
+  get token(): string | null {
+    let value = this.get("token");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set tokenId(value: BigInt) {
-    this.set("tokenId", Value.fromBigInt(value));
+  set token(value: string | null) {
+    if (value === null) {
+      this.unset("token");
+    } else {
+      this.set("token", Value.fromString(value as string));
+    }
   }
 
   get tweetId(): BigInt {
