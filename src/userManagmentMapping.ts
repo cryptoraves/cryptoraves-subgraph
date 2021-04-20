@@ -1,14 +1,14 @@
 import { UserData, UsernameChange, ImageChange} from '../generated/UserManagement/UserManagement'
-import { _UserData } from "../generated/schema"
+import { _User } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
 export function handleUserData(event: UserData): void {
   let id = event.params.param0.cryptoravesAddress.toHex()
 
-  let entity = _UserData.load(id)
+  let entity = _User.load(id)
   if (entity == null) {
-    entity = new _UserData(id)
+    entity = new _User(id)
   }
 
   entity.twitterUserId = event.params.param0.twitterUserId
@@ -25,7 +25,7 @@ export function handleUserData(event: UserData): void {
 export function handleUsernameChange(event: UsernameChange): void {
   let id = event.params._cryptoravesAddress.toHex()
 
-  let entity = _UserData.load(id)
+  let entity = _User.load(id)
 
   entity.userName = event.params._handle
   entity.save()
@@ -34,7 +34,7 @@ export function handleUsernameChange(event: UsernameChange): void {
 export function handleImageChange(event: ImageChange): void {
   let id = event.params._cryptoravesAddress.toHex()
 
-  let entity = _UserData.load(id)
+  let entity = _User.load(id)
 
   entity.imageUrl = event.params.imageUrl
   entity.save()

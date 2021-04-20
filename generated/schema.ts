@@ -426,7 +426,7 @@ export class _Transfer extends Entity {
   }
 }
 
-export class _UserData extends Entity {
+export class _User extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -434,17 +434,17 @@ export class _UserData extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save _UserData entity without an ID");
+    assert(id !== null, "Cannot save _User entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save _UserData entity with non-string ID. " +
+      "Cannot save _User entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("_UserData", id.toString(), this);
+    store.set("_User", id.toString(), this);
   }
 
-  static load(id: string): _UserData | null {
-    return store.get("_UserData", id) as _UserData | null;
+  static load(id: string): _User | null {
+    return store.get("_User", id) as _User | null;
   }
 
   get id(): string {

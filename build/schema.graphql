@@ -37,8 +37,8 @@ type _CryptoDropped @entity {
 #transactionManagement
 type _Transfer @entity {
 	id: ID!
-	from: _UserData!
-	to: _UserData!
+	from: _User!
+	to: _User!
 	amount: BigInt!
 	token: _Token
 	tweetId: BigInt!
@@ -48,7 +48,7 @@ type _Transfer @entity {
 
 
 #userManagement
-type _UserData @entity {
+type _User @entity {
 	id: ID!
 	twitterUserId: BigInt! 
 	userName: String!
