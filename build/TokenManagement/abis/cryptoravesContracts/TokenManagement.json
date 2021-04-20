@@ -134,6 +134,11 @@
             "internalType": "string",
             "name": "emoji",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenBrandImageUrl",
+            "type": "string"
           }
         ],
         "indexed": false,
@@ -242,6 +247,11 @@
           {
             "internalType": "string",
             "name": "emoji",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenBrandImageUrl",
             "type": "string"
           }
         ],
@@ -355,6 +365,11 @@
       {
         "internalType": "string",
         "name": "emoji",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "tokenBrandImageUrl",
         "type": "string"
       }
     ],

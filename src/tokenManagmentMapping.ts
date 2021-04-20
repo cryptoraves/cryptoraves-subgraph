@@ -59,6 +59,7 @@ export function handleToken(event: Token): void {
   entity.symbol = event.params.param0.symbol
   entity.decimals = event.params.param0.decimals
   entity.emoji = event.params.param0.emoji
+  entity.tokenBrandImageUrl = event.params.param0.tokenBrandImageUrl
   entity.save()
 }
 

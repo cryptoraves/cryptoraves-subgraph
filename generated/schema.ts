@@ -265,6 +265,23 @@ export class _Token extends Entity {
   set emoji(value: string) {
     this.set("emoji", Value.fromString(value));
   }
+
+  get tokenBrandImageUrl(): string | null {
+    let value = this.get("tokenBrandImageUrl");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set tokenBrandImageUrl(value: string | null) {
+    if (value === null) {
+      this.unset("tokenBrandImageUrl");
+    } else {
+      this.set("tokenBrandImageUrl", Value.fromString(value as string));
+    }
+  }
 }
 
 export class _CryptoDropped extends Entity {

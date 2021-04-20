@@ -25,6 +25,7 @@ type _Token @entity {
     symbol: String!
     decimals: BigInt!
     emoji: String!
+    tokenBrandImageUrl: String
 }
 type _CryptoDropped @entity {
 	id: ID!

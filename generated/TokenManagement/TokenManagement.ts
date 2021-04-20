@@ -142,6 +142,10 @@ export class TokenParam0Struct extends ethereum.Tuple {
   get emoji(): string {
     return this[8].toString();
   }
+
+  get tokenBrandImageUrl(): string {
+    return this[9].toString();
+  }
 }
 
 export class Withdraw extends ethereum.Event {
@@ -214,6 +218,10 @@ export class TokenManagement__getERCspecsResultValue0Struct extends ethereum.Tup
   get emoji(): string {
     return this[8].toString();
   }
+
+  get tokenBrandImageUrl(): string {
+    return this[9].toString();
+  }
 }
 
 export class TokenManagement__managedTokenListByAddressResult {
@@ -226,6 +234,7 @@ export class TokenManagement__managedTokenListByAddressResult {
   value6: string;
   value7: BigInt;
   value8: string;
+  value9: string;
 
   constructor(
     value0: BigInt,
@@ -236,7 +245,8 @@ export class TokenManagement__managedTokenListByAddressResult {
     value5: string,
     value6: string,
     value7: BigInt,
-    value8: string
+    value8: string,
+    value9: string
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -247,6 +257,7 @@ export class TokenManagement__managedTokenListByAddressResult {
     this.value6 = value6;
     this.value7 = value7;
     this.value8 = value8;
+    this.value9 = value9;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -260,6 +271,7 @@ export class TokenManagement__managedTokenListByAddressResult {
     map.set("value6", ethereum.Value.fromString(this.value6));
     map.set("value7", ethereum.Value.fromUnsignedBigInt(this.value7));
     map.set("value8", ethereum.Value.fromString(this.value8));
+    map.set("value9", ethereum.Value.fromString(this.value9));
     return map;
   }
 }
@@ -275,7 +287,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__getERCspecsResultValue0Struct {
     let result = super.call(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string))",
+      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -291,7 +303,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__getERCspecsResultValue0Struct> {
     let result = super.tryCall(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string))",
+      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -372,7 +384,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__managedTokenListByAddressResult {
     let result = super.call(
       "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string)",
+      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string)",
       [ethereum.Value.fromAddress(param0)]
     );
 
@@ -385,7 +397,8 @@ export class TokenManagement extends ethereum.SmartContract {
       result[5].toString(),
       result[6].toString(),
       result[7].toBigInt(),
-      result[8].toString()
+      result[8].toString(),
+      result[9].toString()
     );
   }
 
@@ -394,7 +407,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__managedTokenListByAddressResult> {
     let result = super.tryCall(
       "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string)",
+      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string)",
       [ethereum.Value.fromAddress(param0)]
     );
     if (result.reverted) {
@@ -411,7 +424,8 @@ export class TokenManagement extends ethereum.SmartContract {
         value[5].toString(),
         value[6].toString(),
         value[7].toBigInt(),
-        value[8].toString()
+        value[8].toString(),
+        value[9].toString()
       )
     );
   }
