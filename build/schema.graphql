@@ -1,7 +1,7 @@
 #tokenManagement
 type _Deposit @entity {
 	id: ID!
-	from: Bytes! 
+	from: Bytes!
 	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
@@ -9,7 +9,7 @@ type _Deposit @entity {
 }
 type _Withdraw @entity {
 	id: ID!
-	to: Bytes! 
+	to: Bytes!
 	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
@@ -29,7 +29,7 @@ type _Token @entity {
 }
 type _CryptoDropped @entity {
 	id: ID!
-	user: Bytes! 
+	user: Bytes!
 	cryptoravesTokenId: BigInt!
 }
 
@@ -50,7 +50,7 @@ type _Transfer @entity {
 #userManagement
 type _User @entity {
 	id: ID!
-	twitterUserId: BigInt! 
+	twitterUserId: BigInt!
 	userName: String!
 	cryptoravesAddress: Bytes!
 	imageUrl: String!
@@ -66,7 +66,7 @@ type _User @entity {
 #cryptoravesToken
 type _TransferSingle @entity {
 	id: ID!
-	operator: Bytes! 
+	operator: Bytes!
 	from: Bytes!
 	to: Bytes!
 	cryptoravesTokenId: BigInt!
@@ -74,7 +74,7 @@ type _TransferSingle @entity {
 }
 type _TransferBatch @entity {
 	id: ID!
-	operator: Bytes! 
+	operator: Bytes!
 	from: Bytes!
 	to: Bytes!
 	cryptoravesTokenIds: [BigInt!]
@@ -82,12 +82,21 @@ type _TransferBatch @entity {
 }
 type _ApprovalForAll @entity {
 	id: ID!
-	account: Bytes! 
+	account: Bytes!
 	operator: Bytes!
 	approved: Boolean!
 }
 type _URI @entity {
 	id: ID!
-	uri: String! 
+	uri: String!
 	cryptoravesTokenId: BigInt!
+}
+
+
+#additional schema # Set ID to `${_User.id}-${_Token.id}`
+type _UserBalance @entity {
+	id: ID!
+	user: _User!
+	token: _Token!
+	balance: BigInt!
 }
