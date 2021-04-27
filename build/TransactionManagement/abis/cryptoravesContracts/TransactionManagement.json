@@ -64,7 +64,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_cryptoravesTokenId",
         "type": "uint256"
       },
       {

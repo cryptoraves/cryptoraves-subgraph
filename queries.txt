@@ -15,15 +15,15 @@ docker-compose up
 
 cd ~/cryptoraves-subgraph
 yarn codegen
-yarn build 
+yarn build
 yarn create-local
 
 yarn deploy-local
 
 
 # TokenManagement Contract
-curl -d '{"query": "{ deposits(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
-curl -d '{"query": "{ withdraws(first: 5){ id to value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ deposits(first: 5){ id to value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
+curl -d '{"query": "{ withdraws(first: 5){ id from value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ tokens(first: 5){ id cryptoravesTokenId isManagedToken ercType totalSupply name symbol decimals emoji, tokenBrandImageUrl } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ cryptoDroppeds(first: 5){ id user cryptoravesTokenId } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
@@ -42,6 +42,9 @@ curl -d '{"query": "{ transferBatches(first: 5){ id operator from to cryptoraves
 curl -d '{"query": "{ approvalForAlls(first: 5){ id account operator approved } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 curl -d '{"query": "{ uris(first: 5){ id uri cryptoravesTokenId } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
+#balances
+
+curl -d '{"query": "{ userBalances(first: 500){ id, user { id twitterUserId userName cryptoravesAddress imageUrl isManaged isUser dropped tokenId layer1Address }, token {id cryptoravesTokenId isManagedToken ercType totalSupply name symbol decimals emoji tokenBrandImageUrl }, balance }}"}' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
 
 
 

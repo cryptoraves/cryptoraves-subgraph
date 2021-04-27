@@ -1,7 +1,7 @@
 #tokenManagement
 type _Deposit @entity {
 	id: ID!
-	from: Bytes!
+	to: Bytes!
 	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
@@ -9,7 +9,7 @@ type _Deposit @entity {
 }
 type _Withdraw @entity {
 	id: ID!
-	to: Bytes!
+	from: Bytes!
 	value: BigInt!
 	tokenAddress: Bytes!
 	cryptoravesTokenId: BigInt!
@@ -98,5 +98,5 @@ type _UserBalance @entity {
 	id: ID!
 	user: _User!
 	token: _Token!
-	balance: BigInt!
+	balance: BigInt
 }

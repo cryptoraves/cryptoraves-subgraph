@@ -35,7 +35,7 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "_from",
+        "name": "_to",
         "type": "address"
       },
       {
@@ -156,7 +156,7 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "_to",
+        "name": "_from",
         "type": "address"
       },
       {

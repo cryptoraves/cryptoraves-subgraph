@@ -42,13 +42,13 @@ export class _Deposit extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get from(): Bytes {
-    let value = this.get("from");
+  get to(): Bytes {
+    let value = this.get("to");
     return value.toBytes();
   }
 
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
   }
 
   get value(): BigInt {
@@ -118,13 +118,13 @@ export class _Withdraw extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get to(): Bytes {
-    let value = this.get("to");
+  get from(): Bytes {
+    let value = this.get("from");
     return value.toBytes();
   }
 
-  set to(value: Bytes) {
-    this.set("to", Value.fromBytes(value));
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
   }
 
   get value(): BigInt {
@@ -872,12 +872,20 @@ export class _UserBalance extends Entity {
     this.set("token", Value.fromString(value));
   }
 
-  get balance(): BigInt {
+  get balance(): BigInt | null {
     let value = this.get("balance");
-    return value.toBigInt();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set balance(value: BigInt) {
-    this.set("balance", Value.fromBigInt(value));
+  set balance(value: BigInt | null) {
+    if (value === null) {
+      this.unset("balance");
+    } else {
+      this.set("balance", Value.fromBigInt(value as BigInt));
+    }
   }
 }

@@ -45,7 +45,7 @@ export class Deposit__Params {
     this._event = event;
   }
 
-  get _from(): Address {
+  get _to(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
@@ -161,7 +161,7 @@ export class Withdraw__Params {
     this._event = event;
   }
 
-  get _to(): Address {
+  get _from(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 

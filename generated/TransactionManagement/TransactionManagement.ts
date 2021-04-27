@@ -61,7 +61,7 @@ export class Transfer__Params {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get _tokenId(): BigInt {
+  get _cryptoravesTokenId(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 

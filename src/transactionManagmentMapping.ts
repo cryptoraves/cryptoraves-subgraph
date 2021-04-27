@@ -17,41 +17,44 @@ export function handleTransfer(event: Transfer): void {
   entity.from = event.params._from.toHex()
   entity.to = event.params._to.toHex()
   entity.amount = event.params._value
-  entity.token = event.params._tokenId.toHex()
+  entity.token = event.params._cryptoravesTokenId.toHex()
   entity.tweetId = event.params._tweetId
   entity.fromTo = event.params._from.toHex().concat(event.params._to.toHex())
   entity.save()
 
-  let balanceIdFrom = event.params._from.toHex().concat(event.params._tokenId.toHex())
+  let balanceIdFrom = event.params._from.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceFrom = _UserBalance.load(balanceIdFrom)
   if (balanceFrom == null) {
     balanceFrom = new _UserBalance(id)
   }
 
-  balanceFrom.balance = event.params._value
-  balanceFrom.token = event.params._tokenId.toHex()
+  let fBal = balanceFrom.balance
+  if(fBal){
+    fBal = fBal.minus(event.params._value)
+  } else {
+    fBal = event.params._value
+  }
+
+  balanceFrom.balance = fBal
+  balanceFrom.token = event.params._cryptoravesTokenId.toHex()
   balanceFrom.user = event.params._from.toHex()
   balanceFrom.save()
 
-
-  let balanceIdTo = event.params._to.toHex().concat(event.params._tokenId.toHex())
+  let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceTo = _UserBalance.load(balanceIdTo)
   if (balanceTo == null) {
     balanceTo = new _UserBalance(id)
   }
 
-  //let tBal = balanceTo.balance
-  /*if(tBal.gt( BigInt.fromI32(0) )){
-    tBal.plus(event.params._value)
+  let tBal = balanceTo.balance
+  if(tBal){
+    tBal = tBal.plus(event.params._value)
   } else {
     tBal = event.params._value
-  }*/
+  }
 
-
-
-  //balanceTo.balance = tBal
-  balanceTo.balance = event.params._value
-  balanceTo.token = event.params._tokenId.toHex()
+  balanceTo.balance = tBal
+  balanceTo.token = event.params._cryptoravesTokenId.toHex()
   balanceTo.user = event.params._to.toHex()
   balanceTo.save()
 
