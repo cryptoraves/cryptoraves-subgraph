@@ -25,7 +25,7 @@ export function handleTransfer(event: Transfer): void {
   let balanceIdFrom = event.params._from.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceFrom = _UserBalance.load(balanceIdFrom)
   if (balanceFrom == null) {
-    balanceFrom = new _UserBalance(id)
+    balanceFrom = new _UserBalance(balanceIdFrom)
   }
 
   let fBal = balanceFrom.balance
@@ -43,7 +43,7 @@ export function handleTransfer(event: Transfer): void {
   let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceTo = _UserBalance.load(balanceIdTo)
   if (balanceTo == null) {
-    balanceTo = new _UserBalance(id)
+    balanceTo = new _UserBalance(balanceIdTo)
   }
 
   let tBal = balanceTo.balance

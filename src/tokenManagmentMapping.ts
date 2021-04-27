@@ -22,7 +22,7 @@ export function handleDeposit(event: Deposit): void {
   let balanceId = event.params._to.toHex().concat(event.params.cryptoravesTokenId.toHex())
   let balance = _UserBalance.load(balanceId)
   if (balance == null) {
-    balance = new _UserBalance(id)
+    balance = new _UserBalance(balanceId)
   }
   let bal = balance.balance
   bal = bal.plus(event.params._value)
@@ -47,14 +47,14 @@ export function handleWithdraw(event: Withdraw): void {
   let balanceId = event.params._from.toHex().concat(event.params.cryptoravesTokenId.toHex())
   let balance = _UserBalance.load(balanceId)
   if (balance == null) {
-    balance = new _UserBalance(id)
+    balance = new _UserBalance(balanceId)
   }
   let bal = balance.balance
   bal = bal.minus(event.params._value)
   balance.balance = bal
   balance.token = event.params.cryptoravesTokenId.toHex()
   balance.user = event.params._from.toHex()
-  balance.save()
+  //balance.save()
 }
 export function handleCryptoDropped(event: CryptoDropped): void {
   let id = event.transaction.hash.toHex()
