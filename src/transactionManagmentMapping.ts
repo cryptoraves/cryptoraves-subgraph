@@ -1,7 +1,7 @@
 import { Transfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
 import { _Transfer, _User, _UserBalance } from "../generated/schema"
 
-import { BigInt } from '@graphprotocol/graph-ts'
+import { store } from '@graphprotocol/graph-ts'
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
@@ -35,10 +35,14 @@ export function handleTransfer(event: Transfer): void {
     fBal = event.params._value
   }
 
-  balanceFrom.balance = fBal
-  balanceFrom.token = event.params._cryptoravesTokenId.toHex()
-  balanceFrom.user = event.params._from.toHex()
-  balanceFrom.save()
+  if (fBal.isZero()){
+    store.remove('_UserBalance', balanceIdFrom)
+  } else {
+    balanceFrom.balance = fBal
+    balanceFrom.token = event.params._cryptoravesTokenId.toHex()
+    balanceFrom.user = event.params._from.toHex()
+    balanceFrom.save()
+  }
 
   let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceTo = _UserBalance.load(balanceIdTo)

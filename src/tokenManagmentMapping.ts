@@ -3,7 +3,7 @@ import { Deposit, Withdraw, CryptoDropped, Token, Emoji } from '../generated/Tok
 import { _Deposit, _Withdraw, _CryptoDropped, _Token, _UserBalance} from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
-import { log } from '@graphprotocol/graph-ts'
+import { log, store, BigInt } from '@graphprotocol/graph-ts'
 
 export function handleDeposit(event: Deposit): void {
 
@@ -25,7 +25,11 @@ export function handleDeposit(event: Deposit): void {
     balance = new _UserBalance(balanceId)
   }
   let bal = balance.balance
-  bal = bal.plus(event.params._value)
+  if(event.params._ercType.toString() == '721'){
+    bal = bal.plus(BigInt.fromI32(1))
+  } else {
+    bal = bal.plus(event.params._value)
+  }
   balance.balance = bal
   balance.token = event.params.cryptoravesTokenId.toHex()
   balance.user = event.params._to.toHex()
@@ -50,11 +54,21 @@ export function handleWithdraw(event: Withdraw): void {
     balance = new _UserBalance(balanceId)
   }
   let bal = balance.balance
-  bal = bal.minus(event.params._value)
-  balance.balance = bal
-  balance.token = event.params.cryptoravesTokenId.toHex()
-  balance.user = event.params._from.toHex()
-  //balance.save()
+  if(event.params._ercType.toString() == '721'){
+    bal = bal.minus(BigInt.fromI32(1))
+  } else {
+    bal = bal.minus(event.params._value)
+  }
+
+  log.info("balance and fromAddress: {} {}", [bal.toString(), event.params._from.toHexString()])
+  if (bal.isZero()){
+    store.remove('_UserBalance', balanceId)
+  } else {
+    balance.balance = bal
+    balance.token = event.params.cryptoravesTokenId.toHex()
+    balance.user = event.params._from.toHex()
+    balance.save()
+  }
 }
 export function handleCryptoDropped(event: CryptoDropped): void {
   let id = event.transaction.hash.toHex()
