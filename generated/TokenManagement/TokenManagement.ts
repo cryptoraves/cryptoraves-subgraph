@@ -107,44 +107,40 @@ export class Token__Params {
 }
 
 export class TokenParam0Struct extends ethereum.Tuple {
-  get managedTokenBaseId(): BigInt {
+  get cryptoravesTokenId(): BigInt {
     return this[0].toBigInt();
   }
 
-  get cryptoravesTokenId(): BigInt {
-    return this[1].toBigInt();
-  }
-
   get isManagedToken(): boolean {
-    return this[2].toBoolean();
+    return this[1].toBoolean();
   }
 
   get ercType(): BigInt {
-    return this[3].toBigInt();
+    return this[2].toBigInt();
   }
 
   get totalSupply(): BigInt {
-    return this[4].toBigInt();
+    return this[3].toBigInt();
   }
 
   get name(): string {
-    return this[5].toString();
+    return this[4].toString();
   }
 
   get symbol(): string {
-    return this[6].toString();
+    return this[5].toString();
   }
 
   get decimals(): BigInt {
-    return this[7].toBigInt();
+    return this[6].toBigInt();
   }
 
   get emoji(): string {
-    return this[8].toString();
+    return this[7].toString();
   }
 
   get tokenBrandImageUrl(): string {
-    return this[9].toString();
+    return this[8].toString();
   }
 }
 
@@ -183,70 +179,64 @@ export class Withdraw__Params {
 }
 
 export class TokenManagement__getERCspecsResultValue0Struct extends ethereum.Tuple {
-  get managedTokenBaseId(): BigInt {
+  get cryptoravesTokenId(): BigInt {
     return this[0].toBigInt();
   }
 
-  get cryptoravesTokenId(): BigInt {
-    return this[1].toBigInt();
-  }
-
   get isManagedToken(): boolean {
-    return this[2].toBoolean();
+    return this[1].toBoolean();
   }
 
   get ercType(): BigInt {
-    return this[3].toBigInt();
+    return this[2].toBigInt();
   }
 
   get totalSupply(): BigInt {
-    return this[4].toBigInt();
+    return this[3].toBigInt();
   }
 
   get name(): string {
-    return this[5].toString();
+    return this[4].toString();
   }
 
   get symbol(): string {
-    return this[6].toString();
+    return this[5].toString();
   }
 
   get decimals(): BigInt {
-    return this[7].toBigInt();
+    return this[6].toBigInt();
   }
 
   get emoji(): string {
-    return this[8].toString();
+    return this[7].toString();
   }
 
   get tokenBrandImageUrl(): string {
-    return this[9].toString();
+    return this[8].toString();
   }
 }
 
-export class TokenManagement__managedTokenListByAddressResult {
+export class TokenManagement__managedTokenByFullBytesIdResult {
   value0: BigInt;
-  value1: BigInt;
-  value2: boolean;
+  value1: boolean;
+  value2: BigInt;
   value3: BigInt;
-  value4: BigInt;
+  value4: string;
   value5: string;
-  value6: string;
-  value7: BigInt;
+  value6: BigInt;
+  value7: string;
   value8: string;
-  value9: string;
 
   constructor(
     value0: BigInt,
-    value1: BigInt,
-    value2: boolean,
+    value1: boolean,
+    value2: BigInt,
     value3: BigInt,
-    value4: BigInt,
+    value4: string,
     value5: string,
-    value6: string,
-    value7: BigInt,
-    value8: string,
-    value9: string
+    value6: BigInt,
+    value7: string,
+    value8: string
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -257,21 +247,19 @@ export class TokenManagement__managedTokenListByAddressResult {
     this.value6 = value6;
     this.value7 = value7;
     this.value8 = value8;
-    this.value9 = value9;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
     map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromBoolean(this.value2));
+    map.set("value1", ethereum.Value.fromBoolean(this.value1));
+    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
-    map.set("value4", ethereum.Value.fromUnsignedBigInt(this.value4));
+    map.set("value4", ethereum.Value.fromString(this.value4));
     map.set("value5", ethereum.Value.fromString(this.value5));
-    map.set("value6", ethereum.Value.fromString(this.value6));
-    map.set("value7", ethereum.Value.fromUnsignedBigInt(this.value7));
+    map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
+    map.set("value7", ethereum.Value.fromString(this.value7));
     map.set("value8", ethereum.Value.fromString(this.value8));
-    map.set("value9", ethereum.Value.fromString(this.value9));
     return map;
   }
 }
@@ -287,7 +275,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__getERCspecsResultValue0Struct {
     let result = super.call(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -303,7 +291,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__getERCspecsResultValue0Struct> {
     let result = super.tryCall(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -379,53 +367,51 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  managedTokenListByAddress(
-    param0: Address
-  ): TokenManagement__managedTokenListByAddressResult {
+  managedTokenByFullBytesId(
+    param0: BigInt
+  ): TokenManagement__managedTokenByFullBytesIdResult {
     let result = super.call(
-      "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string)",
-      [ethereum.Value.fromAddress(param0)]
+      "managedTokenByFullBytesId",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
-    return new TokenManagement__managedTokenListByAddressResult(
+    return new TokenManagement__managedTokenByFullBytesIdResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBoolean(),
+      result[1].toBoolean(),
+      result[2].toBigInt(),
       result[3].toBigInt(),
-      result[4].toBigInt(),
+      result[4].toString(),
       result[5].toString(),
-      result[6].toString(),
-      result[7].toBigInt(),
-      result[8].toString(),
-      result[9].toString()
+      result[6].toBigInt(),
+      result[7].toString(),
+      result[8].toString()
     );
   }
 
-  try_managedTokenListByAddress(
-    param0: Address
-  ): ethereum.CallResult<TokenManagement__managedTokenListByAddressResult> {
+  try_managedTokenByFullBytesId(
+    param0: BigInt
+  ): ethereum.CallResult<TokenManagement__managedTokenByFullBytesIdResult> {
     let result = super.tryCall(
-      "managedTokenListByAddress",
-      "managedTokenListByAddress(address):(uint256,uint256,bool,uint256,uint256,string,string,uint256,string,string)",
-      [ethereum.Value.fromAddress(param0)]
+      "managedTokenByFullBytesId",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new TokenManagement__managedTokenListByAddressResult(
+      new TokenManagement__managedTokenByFullBytesIdResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBoolean(),
+        value[1].toBoolean(),
+        value[2].toBigInt(),
         value[3].toBigInt(),
-        value[4].toBigInt(),
+        value[4].toString(),
         value[5].toString(),
-        value[6].toString(),
-        value[7].toBigInt(),
-        value[8].toString(),
-        value[9].toString()
+        value[6].toBigInt(),
+        value[7].toString(),
+        value[8].toString()
       )
     );
   }
@@ -496,20 +482,20 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  tokenListByBaseId(param0: BigInt): Address {
+  tokenAddressByFullBytesId(param0: BigInt): Address {
     let result = super.call(
-      "tokenListByBaseId",
-      "tokenListByBaseId(uint256):(address)",
+      "tokenAddressByFullBytesId",
+      "tokenAddressByFullBytesId(uint256):(address)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
     return result[0].toAddress();
   }
 
-  try_tokenListByBaseId(param0: BigInt): ethereum.CallResult<Address> {
+  try_tokenAddressByFullBytesId(param0: BigInt): ethereum.CallResult<Address> {
     let result = super.tryCall(
-      "tokenListByBaseId",
-      "tokenListByBaseId(uint256):(address)",
+      "tokenAddressByFullBytesId",
+      "tokenAddressByFullBytesId(uint256):(address)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -517,6 +503,29 @@ export class TokenManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  tokenBaseBytesIdByAddress(param0: Address): BigInt {
+    let result = super.call(
+      "tokenBaseBytesIdByAddress",
+      "tokenBaseBytesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(param0)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_tokenBaseBytesIdByAddress(param0: Address): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "tokenBaseBytesIdByAddress",
+      "tokenBaseBytesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getCryptoravesTokenAddress(): Address {
@@ -604,21 +613,21 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getTotalSupply(_tokenId: BigInt): BigInt {
+  getTotalSupply(_1155tokenId: BigInt): BigInt {
     let result = super.call(
       "getTotalSupply",
       "getTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_tokenId)]
+      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_getTotalSupply(_tokenId: BigInt): ethereum.CallResult<BigInt> {
+  try_getTotalSupply(_1155tokenId: BigInt): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getTotalSupply",
       "getTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_tokenId)]
+      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -627,17 +636,17 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getSymbol(_tokenId: BigInt): string {
+  getSymbol(_1155tokenId: BigInt): string {
     let result = super.call("getSymbol", "getSymbol(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
 
     return result[0].toString();
   }
 
-  try_getSymbol(_tokenId: BigInt): ethereum.CallResult<string> {
+  try_getSymbol(_1155tokenId: BigInt): ethereum.CallResult<string> {
     let result = super.tryCall("getSymbol", "getSymbol(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -646,17 +655,17 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  getEmoji(_tokenId: BigInt): string {
+  getEmoji(_1155tokenId: BigInt): string {
     let result = super.call("getEmoji", "getEmoji(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
 
     return result[0].toString();
   }
 
-  try_getEmoji(_tokenId: BigInt): ethereum.CallResult<string> {
+  try_getEmoji(_1155tokenId: BigInt): ethereum.CallResult<string> {
     let result = super.tryCall("getEmoji", "getEmoji(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -665,17 +674,17 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  getERCtype(_tokenId: BigInt): BigInt {
+  getERCtype(_1155tokenId: BigInt): BigInt {
     let result = super.call("getERCtype", "getERCtype(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
 
     return result[0].toBigInt();
   }
 
-  try_getERCtype(_tokenId: BigInt): ethereum.CallResult<BigInt> {
+  try_getERCtype(_1155tokenId: BigInt): ethereum.CallResult<BigInt> {
     let result = super.tryCall("getERCtype", "getERCtype(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_tokenId)
+      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -684,21 +693,21 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getNextBaseId(_tokenId: BigInt): BigInt {
+  getNextBaseId(_1155tokenId: BigInt): BigInt {
     let result = super.call(
       "getNextBaseId",
       "getNextBaseId(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_tokenId)]
+      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_getNextBaseId(_tokenId: BigInt): ethereum.CallResult<BigInt> {
+  try_getNextBaseId(_1155tokenId: BigInt): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getNextBaseId",
       "getNextBaseId(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_tokenId)]
+      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -708,7 +717,7 @@ export class TokenManagement extends ethereum.SmartContract {
   }
 
   adjustValueByUnits(
-    _tokenId: BigInt,
+    _1155tokenId: BigInt,
     _value: BigInt,
     _decimalPlace: BigInt
   ): BigInt {
@@ -716,7 +725,7 @@ export class TokenManagement extends ethereum.SmartContract {
       "adjustValueByUnits",
       "adjustValueByUnits(uint256,uint256,uint256):(uint256)",
       [
-        ethereum.Value.fromUnsignedBigInt(_tokenId),
+        ethereum.Value.fromUnsignedBigInt(_1155tokenId),
         ethereum.Value.fromUnsignedBigInt(_value),
         ethereum.Value.fromUnsignedBigInt(_decimalPlace)
       ]
@@ -726,7 +735,7 @@ export class TokenManagement extends ethereum.SmartContract {
   }
 
   try_adjustValueByUnits(
-    _tokenId: BigInt,
+    _1155tokenId: BigInt,
     _value: BigInt,
     _decimalPlace: BigInt
   ): ethereum.CallResult<BigInt> {
@@ -734,7 +743,7 @@ export class TokenManagement extends ethereum.SmartContract {
       "adjustValueByUnits",
       "adjustValueByUnits(uint256,uint256,uint256):(uint256)",
       [
-        ethereum.Value.fromUnsignedBigInt(_tokenId),
+        ethereum.Value.fromUnsignedBigInt(_1155tokenId),
         ethereum.Value.fromUnsignedBigInt(_value),
         ethereum.Value.fromUnsignedBigInt(_decimalPlace)
       ]
@@ -746,21 +755,21 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  isManagedToken(_token: Address): boolean {
+  isManagedToken(_tokenAddr: Address): boolean {
     let result = super.call(
       "isManagedToken",
       "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_token)]
+      [ethereum.Value.fromAddress(_tokenAddr)]
     );
 
     return result[0].toBoolean();
   }
 
-  try_isManagedToken(_token: Address): ethereum.CallResult<boolean> {
+  try_isManagedToken(_tokenAddr: Address): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "isManagedToken",
       "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_token)]
+      [ethereum.Value.fromAddress(_tokenAddr)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -769,23 +778,23 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  getManagedTokenIdByAddress(_tokenOriginAddr: Address): BigInt {
+  getManagedTokenBasedBytesIdByAddress(_tokenAddr: Address): BigInt {
     let result = super.call(
-      "getManagedTokenIdByAddress",
-      "getManagedTokenIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(_tokenOriginAddr)]
+      "getManagedTokenBasedBytesIdByAddress",
+      "getManagedTokenBasedBytesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(_tokenAddr)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_getManagedTokenIdByAddress(
-    _tokenOriginAddr: Address
+  try_getManagedTokenBasedBytesIdByAddress(
+    _tokenAddr: Address
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
-      "getManagedTokenIdByAddress",
-      "getManagedTokenIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(_tokenOriginAddr)]
+      "getManagedTokenBasedBytesIdByAddress",
+      "getManagedTokenBasedBytesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(_tokenAddr)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1070,7 +1079,7 @@ export class DepositCall__Inputs {
     return this._call.inputValues[0].value.toBigInt();
   }
 
-  get _contract(): Address {
+  get _tokenAddr(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
@@ -1116,7 +1125,7 @@ export class WithdrawERC20Call__Inputs {
     return this._call.inputValues[0].value.toBigInt();
   }
 
-  get _contract(): Address {
+  get _tokenAddr(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
@@ -1154,11 +1163,11 @@ export class WithdrawERC721Call__Inputs {
     this._call = call;
   }
 
-  get _tokenId(): BigInt {
+  get _tokenERC721Id(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 
-  get _contract(): Address {
+  get _tokenAddr(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
@@ -1238,7 +1247,7 @@ export class SetSymbolCall__Inputs {
     this._call = call;
   }
 
-  get _tokenId(): BigInt {
+  get _1155tokenId(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 
@@ -1272,7 +1281,7 @@ export class SetEmojiCall__Inputs {
     this._call = call;
   }
 
-  get _tokenId(): BigInt {
+  get _1155tokenId(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 
@@ -1306,7 +1315,7 @@ export class SubtractFromTotalSupplyCall__Inputs {
     this._call = call;
   }
 
-  get _tokenId(): BigInt {
+  get _1155tokenId(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 
@@ -1340,7 +1349,7 @@ export class SetIsManagedTokenCall__Inputs {
     this._call = call;
   }
 
-  get _token(): Address {
+  get _tokenAddr(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
@@ -1382,7 +1391,7 @@ export class ManagedTransferCall__Inputs {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get _id(): BigInt {
+  get _1155tokenId(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
   }
 

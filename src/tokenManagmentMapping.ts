@@ -1,6 +1,6 @@
 import { Deposit, Withdraw, CryptoDropped, Token, Emoji } from '../generated/TokenManagement/TokenManagement'
 
-import { _Deposit, _Withdraw, _CryptoDropped, _Token, _UserBalance} from "../generated/schema"
+import { _Deposit, _Withdraw, _CryptoDropped, _Token, _UserBalance, _Transfer } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 import { log, store, BigInt } from '@graphprotocol/graph-ts'
@@ -34,6 +34,8 @@ export function handleDeposit(event: Deposit): void {
   balance.token = event.params.cryptoravesTokenId.toHex()
   balance.user = event.params._to.toHex()
   balance.save()
+
+
 }
 export function handleWithdraw(event: Withdraw): void {
   let id = event.transaction.hash.toHex()
@@ -69,6 +71,17 @@ export function handleWithdraw(event: Withdraw): void {
     balance.user = event.params._from.toHex()
     balance.save()
   }
+
+  //make transfer events
+  //let xfer = new _Transfer(id)
+  //xfer.from = BigInt.fromI32(0).toHex()
+  log.info('HEXVALUE {}',[BigInt.fromI32(0).toHex()])
+  //xfer.to = event.params._to.toHex()
+  //xfer.amount = event.params._value
+  //xfer.token = event.params.cryptoravesTokenId.toHex()
+  //xfer.tweetId = BigInt.fromI32(0)
+  //xfer.fromTo = BigInt.fromI32(0).toHex().concat(event.params._to.toHex())
+  //xfer.save()
 }
 export function handleCryptoDropped(event: CryptoDropped): void {
   let id = event.transaction.hash.toHex()

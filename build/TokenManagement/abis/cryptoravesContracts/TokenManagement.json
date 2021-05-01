@@ -92,11 +92,6 @@
         "components": [
           {
             "internalType": "uint256",
-            "name": "managedTokenBaseId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
             "name": "cryptoravesTokenId",
             "type": "uint256"
           },
@@ -206,11 +201,6 @@
         "components": [
           {
             "internalType": "uint256",
-            "name": "managedTokenBaseId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
             "name": "cryptoravesTokenId",
             "type": "uint256"
           },
@@ -315,18 +305,13 @@
   {
     "inputs": [
       {
-        "internalType": "address",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
-    "name": "managedTokenListByAddress",
+    "name": "managedTokenByFullBytesId",
     "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "managedTokenBaseId",
-        "type": "uint256"
-      },
       {
         "internalType": "uint256",
         "name": "cryptoravesTokenId",
@@ -452,12 +437,32 @@
         "type": "uint256"
       }
     ],
-    "name": "tokenListByBaseId",
+    "name": "tokenAddressByFullBytesId",
     "outputs": [
       {
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "tokenBaseBytesIdByAddress",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -541,7 +546,7 @@
       },
       {
         "internalType": "address",
-        "name": "_contract",
+        "name": "_tokenAddr",
         "type": "address"
       },
       {
@@ -576,7 +581,7 @@
       },
       {
         "internalType": "address",
-        "name": "_contract",
+        "name": "_tokenAddr",
         "type": "address"
       },
       {
@@ -601,12 +606,12 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_tokenERC721Id",
         "type": "uint256"
       },
       {
         "internalType": "address",
-        "name": "_contract",
+        "name": "_tokenAddr",
         "type": "address"
       },
       {
@@ -680,7 +685,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       }
     ],
@@ -700,7 +705,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       }
     ],
@@ -720,7 +725,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       },
       {
@@ -738,7 +743,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       }
     ],
@@ -758,7 +763,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       },
       {
@@ -776,7 +781,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       }
     ],
@@ -796,7 +801,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       }
     ],
@@ -816,7 +821,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       },
       {
@@ -846,7 +851,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenId",
+        "name": "_1155tokenId",
         "type": "uint256"
       },
       {
@@ -864,7 +869,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_token",
+        "name": "_tokenAddr",
         "type": "address"
       }
     ],
@@ -884,7 +889,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_token",
+        "name": "_tokenAddr",
         "type": "address"
       },
       {
@@ -902,11 +907,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_tokenOriginAddr",
+        "name": "_tokenAddr",
         "type": "address"
       }
     ],
-    "name": "getManagedTokenIdByAddress",
+    "name": "getManagedTokenBasedBytesIdByAddress",
     "outputs": [
       {
         "internalType": "uint256",
@@ -946,7 +951,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_id",
+        "name": "_1155tokenId",
         "type": "uint256"
       },
       {

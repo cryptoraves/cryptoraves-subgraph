@@ -653,3 +653,49 @@ export class ResetTokenDropCall__Outputs {
     this._call = call;
   }
 }
+
+export class EmitTransferFromTokenManagementContractCall extends ethereum.Call {
+  get inputs(): EmitTransferFromTokenManagementContractCall__Inputs {
+    return new EmitTransferFromTokenManagementContractCall__Inputs(this);
+  }
+
+  get outputs(): EmitTransferFromTokenManagementContractCall__Outputs {
+    return new EmitTransferFromTokenManagementContractCall__Outputs(this);
+  }
+}
+
+export class EmitTransferFromTokenManagementContractCall__Inputs {
+  _call: EmitTransferFromTokenManagementContractCall;
+
+  constructor(call: EmitTransferFromTokenManagementContractCall) {
+    this._call = call;
+  }
+
+  get _from(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _to(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _value(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get _cryptoravesTokenId(): BigInt {
+    return this._call.inputValues[3].value.toBigInt();
+  }
+
+  get _tweetId(): BigInt {
+    return this._call.inputValues[4].value.toBigInt();
+  }
+}
+
+export class EmitTransferFromTokenManagementContractCall__Outputs {
+  _call: EmitTransferFromTokenManagementContractCall;
+
+  constructor(call: EmitTransferFromTokenManagementContractCall) {
+    this._call = call;
+  }
+}
