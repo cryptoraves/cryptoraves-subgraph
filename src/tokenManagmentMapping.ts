@@ -71,17 +71,6 @@ export function handleWithdraw(event: Withdraw): void {
     balance.user = event.params._from.toHex()
     balance.save()
   }
-
-  //make transfer events
-  //let xfer = new _Transfer(id)
-  //xfer.from = BigInt.fromI32(0).toHex()
-  log.info('HEXVALUE {}',[BigInt.fromI32(0).toHex()])
-  //xfer.to = event.params._to.toHex()
-  //xfer.amount = event.params._value
-  //xfer.token = event.params.cryptoravesTokenId.toHex()
-  //xfer.tweetId = BigInt.fromI32(0)
-  //xfer.fromTo = BigInt.fromI32(0).toHex().concat(event.params._to.toHex())
-  //xfer.save()
 }
 export function handleCryptoDropped(event: CryptoDropped): void {
   let id = event.transaction.hash.toHex()

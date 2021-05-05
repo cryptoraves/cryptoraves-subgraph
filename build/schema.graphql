@@ -55,12 +55,12 @@ type _User @entity {
 	cryptoravesAddress: Bytes!
 	imageUrl: String!
 	isManaged: Boolean!
-    isUser: Boolean!
-    dropped: Boolean!
-    tokenId: BigInt!
+	isUser: Boolean!
+	dropped: Boolean!
+	tokenId: BigInt!
 
-    #not in .sol struct
-    layer1Address: Bytes
+	#not in .sol struct
+	layer1Address: Bytes
 }
 
 #cryptoravesToken

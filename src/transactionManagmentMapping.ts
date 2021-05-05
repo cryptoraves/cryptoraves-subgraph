@@ -1,7 +1,7 @@
 import { Transfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
 import { _Transfer, _User, _UserBalance } from "../generated/schema"
 
-import { store } from '@graphprotocol/graph-ts'
+import { store, log } from '@graphprotocol/graph-ts'
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
@@ -15,6 +15,7 @@ export function handleTransfer(event: Transfer): void {
   }
 
   entity.from = event.params._from.toHex()
+
   entity.to = event.params._to.toHex()
   entity.amount = event.params._value
   entity.token = event.params._cryptoravesTokenId.toHex()
@@ -43,7 +44,6 @@ export function handleTransfer(event: Transfer): void {
     balanceFrom.user = event.params._from.toHex()
     balanceFrom.save()
   }
-
   let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceTo = _UserBalance.load(balanceIdTo)
   if (balanceTo == null) {
@@ -61,6 +61,7 @@ export function handleTransfer(event: Transfer): void {
   balanceTo.token = event.params._cryptoravesTokenId.toHex()
   balanceTo.user = event.params._to.toHex()
   balanceTo.save()
+  log.info("ENTITYFROM*****TO*********USER******: {} {}", [event.params._from.toHexString(), event.params._to.toHex()])
 
 
 }
