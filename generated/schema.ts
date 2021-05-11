@@ -282,6 +282,15 @@ export class _Token extends Entity {
       this.set("tokenBrandImageUrl", Value.fromString(value as string));
     }
   }
+
+  get modified(): BigInt {
+    let value = this.get("modified");
+    return value.toBigInt();
+  }
+
+  set modified(value: BigInt) {
+    this.set("modified", Value.fromBigInt(value));
+  }
 }
 
 export class _CryptoDropped extends Entity {
@@ -424,6 +433,15 @@ export class _Transfer extends Entity {
   set fromTo(value: string) {
     this.set("fromTo", Value.fromString(value));
   }
+
+  get modified(): BigInt {
+    let value = this.get("modified");
+    return value.toBigInt();
+  }
+
+  set modified(value: BigInt) {
+    this.set("modified", Value.fromBigInt(value));
+  }
 }
 
 export class _User extends Entity {
@@ -543,6 +561,15 @@ export class _User extends Entity {
     } else {
       this.set("layer1Address", Value.fromBytes(value as Bytes));
     }
+  }
+
+  get modified(): BigInt {
+    let value = this.get("modified");
+    return value.toBigInt();
+  }
+
+  set modified(value: BigInt) {
+    this.set("modified", Value.fromBigInt(value));
   }
 }
 

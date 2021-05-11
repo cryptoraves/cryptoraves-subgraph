@@ -19,6 +19,7 @@ export function handleUserData(event: UserData): void {
   entity.isUser = event.params.param0.isUser
   entity.dropped = event.params.param0.dropped
   entity.tokenId = event.params.param0.tokenId
+  entity.modified = event.block.timestamp
   entity.save()
 }
 
@@ -28,6 +29,7 @@ export function handleUsernameChange(event: UsernameChange): void {
   let entity = _User.load(id)
 
   entity.userName = event.params._handle
+  entity.modified = event.block.timestamp
   entity.save()
 }
 
@@ -37,5 +39,6 @@ export function handleImageChange(event: ImageChange): void {
   let entity = _User.load(id)
 
   entity.imageUrl = event.params.imageUrl
+  entity.modified = event.block.timestamp
   entity.save()
 }

@@ -26,6 +26,8 @@ type _Token @entity {
     decimals: BigInt!
     emoji: String!
     tokenBrandImageUrl: String
+
+		modified: BigInt!
 }
 type _CryptoDropped @entity {
 	id: ID!
@@ -43,6 +45,8 @@ type _Transfer @entity {
 	token: _Token
 	tweetId: BigInt!
 	fromTo: String!
+
+	modified: BigInt!
 }
 
 
@@ -61,6 +65,8 @@ type _User @entity {
 
 	#not in .sol struct
 	layer1Address: Bytes
+
+	modified: BigInt!
 }
 
 #cryptoravesToken

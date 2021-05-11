@@ -21,6 +21,7 @@ export function handleTransfer(event: Transfer): void {
   entity.token = event.params._cryptoravesTokenId.toHex()
   entity.tweetId = event.params._tweetId
   entity.fromTo = event.params._from.toHex().concat(event.params._to.toHex())
+  entity.modified = event.block.timestamp
   entity.save()
 
   let balanceIdFrom = event.params._from.toHex().concat(event.params._cryptoravesTokenId.toHex())
@@ -72,6 +73,7 @@ export function handleHeresMyAddress(event: HeresMyAddress): void {
   let entity = _User.load(id)
 
   entity.layer1Address = event.params._layer1Address
+  entity.modified = event.block.timestamp
   entity.save()
 
 }

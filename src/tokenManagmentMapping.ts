@@ -62,7 +62,7 @@ export function handleWithdraw(event: Withdraw): void {
     bal = bal.minus(event.params._value)
   }
 
-  log.info("balance and fromAddress: {} {}", [bal.toString(), event.params._from.toHexString()])
+  log.info("balance and fromAddress and timestamp: {} {} {}", [bal.toString(), event.params._from.toHexString(), event.block.timestamp.toString()])
   if (bal.isZero()){
     store.remove('_UserBalance', balanceId)
   } else {
@@ -90,7 +90,6 @@ export function handleToken(event: Token): void {
     entity = new _Token(id)
   }
   //log.debug("Create entity {}", [id])
-
   entity.cryptoravesTokenId = event.params.param0.cryptoravesTokenId
   entity.isManagedToken = event.params.param0.isManagedToken
   entity.ercType = event.params.param0.ercType
@@ -100,6 +99,7 @@ export function handleToken(event: Token): void {
   entity.decimals = event.params.param0.decimals
   entity.emoji = event.params.param0.emoji
   entity.tokenBrandImageUrl = event.params.param0.tokenBrandImageUrl
+  entity.modified = event.block.timestamp
   entity.save()
 }
 
@@ -108,6 +108,7 @@ export function handleEmoji(event: Emoji): void {
   let token = _Token.load(id)
 
   token.emoji = event.params._emoji
+  token.modified = event.block.timestamp
   token.save()
 
 }
