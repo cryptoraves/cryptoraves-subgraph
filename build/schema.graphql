@@ -26,6 +26,7 @@ type _Token @entity {
     decimals: BigInt!
     emoji: String!
     tokenBrandImageUrl: String
+		tokenDescription: String
 
 		modified: BigInt!
 }

@@ -78,11 +78,49 @@
       {
         "indexed": false,
         "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      }
+    ],
+    "name": "DescriptionChange",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "cryptoravesTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
         "name": "_emoji",
         "type": "string"
       }
     ],
     "name": "Emoji",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "cryptoravesTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_url",
+        "type": "string"
+      }
+    ],
+    "name": "ImgUrlChange",
     "type": "event"
   },
   {
@@ -133,6 +171,11 @@
           {
             "internalType": "string",
             "name": "tokenBrandImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenDescription",
             "type": "string"
           }
         ],
@@ -242,6 +285,11 @@
           {
             "internalType": "string",
             "name": "tokenBrandImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenDescription",
             "type": "string"
           }
         ],
@@ -355,6 +403,11 @@
       {
         "internalType": "string",
         "name": "tokenBrandImageUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "tokenDescription",
         "type": "string"
       }
     ],
@@ -899,6 +952,42 @@
       }
     ],
     "name": "setIsManagedToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_1155tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_url",
+        "type": "string"
+      }
+    ],
+    "name": "setTokenBrandImgUrl",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_1155tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      }
+    ],
+    "name": "setTokenDescription",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

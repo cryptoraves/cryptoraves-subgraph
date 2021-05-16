@@ -1,4 +1,4 @@
-import { Deposit, Withdraw, CryptoDropped, Token, Emoji } from '../generated/TokenManagement/TokenManagement'
+import { Deposit, Withdraw, CryptoDropped, Token, Emoji, ImgUrlChange, DescriptionChange } from '../generated/TokenManagement/TokenManagement'
 
 import { _Deposit, _Withdraw, _CryptoDropped, _Token, _UserBalance, _Transfer } from "../generated/schema"
 
@@ -108,6 +108,26 @@ export function handleEmoji(event: Emoji): void {
   let token = _Token.load(id)
 
   token.emoji = event.params._emoji
+  token.modified = event.block.timestamp
+  token.save()
+
+}
+
+export function handleImgUrlChange(event: ImgUrlChange): void {
+  let id = event.params.cryptoravesTokenId.toHex()
+  let token = _Token.load(id)
+
+  token.tokenBrandImageUrl = event.params._url
+  token.modified = event.block.timestamp
+  token.save()
+
+}
+
+export function handleDescriptionChange(event: DescriptionChange): void {
+  let id = event.params.cryptoravesTokenId.toHex()
+  let token = _Token.load(id)
+
+  token.tokenDescription = event.params._description
   token.modified = event.block.timestamp
   token.save()
 

@@ -66,6 +66,28 @@ export class Deposit__Params {
   }
 }
 
+export class DescriptionChange extends ethereum.Event {
+  get params(): DescriptionChange__Params {
+    return new DescriptionChange__Params(this);
+  }
+}
+
+export class DescriptionChange__Params {
+  _event: DescriptionChange;
+
+  constructor(event: DescriptionChange) {
+    this._event = event;
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get _description(): string {
+    return this._event.parameters[1].value.toString();
+  }
+}
+
 export class Emoji extends ethereum.Event {
   get params(): Emoji__Params {
     return new Emoji__Params(this);
@@ -84,6 +106,28 @@ export class Emoji__Params {
   }
 
   get _emoji(): string {
+    return this._event.parameters[1].value.toString();
+  }
+}
+
+export class ImgUrlChange extends ethereum.Event {
+  get params(): ImgUrlChange__Params {
+    return new ImgUrlChange__Params(this);
+  }
+}
+
+export class ImgUrlChange__Params {
+  _event: ImgUrlChange;
+
+  constructor(event: ImgUrlChange) {
+    this._event = event;
+  }
+
+  get cryptoravesTokenId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get _url(): string {
     return this._event.parameters[1].value.toString();
   }
 }
@@ -141,6 +185,10 @@ export class TokenParam0Struct extends ethereum.Tuple {
 
   get tokenBrandImageUrl(): string {
     return this[8].toString();
+  }
+
+  get tokenDescription(): string {
+    return this[9].toString();
   }
 }
 
@@ -214,6 +262,10 @@ export class TokenManagement__getERCspecsResultValue0Struct extends ethereum.Tup
   get tokenBrandImageUrl(): string {
     return this[8].toString();
   }
+
+  get tokenDescription(): string {
+    return this[9].toString();
+  }
 }
 
 export class TokenManagement__managedTokenByFullBytesIdResult {
@@ -226,6 +278,7 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
   value6: BigInt;
   value7: string;
   value8: string;
+  value9: string;
 
   constructor(
     value0: BigInt,
@@ -236,7 +289,8 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
     value5: string,
     value6: BigInt,
     value7: string,
-    value8: string
+    value8: string,
+    value9: string
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -247,6 +301,7 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
     this.value6 = value6;
     this.value7 = value7;
     this.value8 = value8;
+    this.value9 = value9;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -260,6 +315,7 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
     map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
     map.set("value7", ethereum.Value.fromString(this.value7));
     map.set("value8", ethereum.Value.fromString(this.value8));
+    map.set("value9", ethereum.Value.fromString(this.value9));
     return map;
   }
 }
@@ -275,7 +331,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__getERCspecsResultValue0Struct {
     let result = super.call(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -291,7 +347,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__getERCspecsResultValue0Struct> {
     let result = super.tryCall(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -372,7 +428,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__managedTokenByFullBytesIdResult {
     let result = super.call(
       "managedTokenByFullBytesId",
-      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string)",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
@@ -385,7 +441,8 @@ export class TokenManagement extends ethereum.SmartContract {
       result[5].toString(),
       result[6].toBigInt(),
       result[7].toString(),
-      result[8].toString()
+      result[8].toString(),
+      result[9].toString()
     );
   }
 
@@ -394,7 +451,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__managedTokenByFullBytesIdResult> {
     let result = super.tryCall(
       "managedTokenByFullBytesId",
-      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string)",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -411,7 +468,8 @@ export class TokenManagement extends ethereum.SmartContract {
         value[5].toString(),
         value[6].toBigInt(),
         value[7].toString(),
-        value[8].toString()
+        value[8].toString(),
+        value[9].toString()
       )
     );
   }
@@ -1362,6 +1420,74 @@ export class SetIsManagedTokenCall__Outputs {
   _call: SetIsManagedTokenCall;
 
   constructor(call: SetIsManagedTokenCall) {
+    this._call = call;
+  }
+}
+
+export class SetTokenBrandImgUrlCall extends ethereum.Call {
+  get inputs(): SetTokenBrandImgUrlCall__Inputs {
+    return new SetTokenBrandImgUrlCall__Inputs(this);
+  }
+
+  get outputs(): SetTokenBrandImgUrlCall__Outputs {
+    return new SetTokenBrandImgUrlCall__Outputs(this);
+  }
+}
+
+export class SetTokenBrandImgUrlCall__Inputs {
+  _call: SetTokenBrandImgUrlCall;
+
+  constructor(call: SetTokenBrandImgUrlCall) {
+    this._call = call;
+  }
+
+  get _1155tokenId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+
+  get _url(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class SetTokenBrandImgUrlCall__Outputs {
+  _call: SetTokenBrandImgUrlCall;
+
+  constructor(call: SetTokenBrandImgUrlCall) {
+    this._call = call;
+  }
+}
+
+export class SetTokenDescriptionCall extends ethereum.Call {
+  get inputs(): SetTokenDescriptionCall__Inputs {
+    return new SetTokenDescriptionCall__Inputs(this);
+  }
+
+  get outputs(): SetTokenDescriptionCall__Outputs {
+    return new SetTokenDescriptionCall__Outputs(this);
+  }
+}
+
+export class SetTokenDescriptionCall__Inputs {
+  _call: SetTokenDescriptionCall;
+
+  constructor(call: SetTokenDescriptionCall) {
+    this._call = call;
+  }
+
+  get _1155tokenId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+
+  get _description(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class SetTokenDescriptionCall__Outputs {
+  _call: SetTokenDescriptionCall;
+
+  constructor(call: SetTokenDescriptionCall) {
     this._call = call;
   }
 }

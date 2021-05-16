@@ -24,10 +24,14 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,indexed address,indexed uint256,uint256)
           handler: handleWithdraw
-        - event: Token((uint256,bool,uint256,uint256,string,string,uint256,string,string))
+        - event: Token((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))
           handler: handleToken
         - event: Emoji(uint256,string)
           handler: handleEmoji
+        - event: ImgUrlChange(uint256,string)
+          handler: handleImgUrlChange
+        - event: DescriptionChange(uint256,string)
+          handler: handleDescriptionChange
         - event: CryptoDropped(address,uint256)
           handler: handleCryptoDropped
       file: ./src/tokenManagmentMapping.ts

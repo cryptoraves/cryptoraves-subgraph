@@ -283,6 +283,23 @@ export class _Token extends Entity {
     }
   }
 
+  get tokenDescription(): string | null {
+    let value = this.get("tokenDescription");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set tokenDescription(value: string | null) {
+    if (value === null) {
+      this.unset("tokenDescription");
+    } else {
+      this.set("tokenDescription", Value.fromString(value as string));
+    }
+  }
+
   get modified(): BigInt {
     let value = this.get("modified");
     return value.toBigInt();
