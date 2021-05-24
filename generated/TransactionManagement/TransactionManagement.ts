@@ -258,18 +258,14 @@ export class TransactionManagement extends ethereum.SmartContract {
 
   initCommand(
     _twitterInts: TransactionManagement__initCommandInput_twitterIntsStruct,
-    _twitterStrings: Array<string>,
-    _metaData: Array<Bytes>,
-    _functionData: Bytes
+    _twitterStrings: Array<string>
   ): boolean {
     let result = super.call(
       "initCommand",
-      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[],bytes[],bytes):(bool)",
+      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[]):(bool)",
       [
         ethereum.Value.fromTuple(_twitterInts),
-        ethereum.Value.fromStringArray(_twitterStrings),
-        ethereum.Value.fromBytesArray(_metaData),
-        ethereum.Value.fromBytes(_functionData)
+        ethereum.Value.fromStringArray(_twitterStrings)
       ]
     );
 
@@ -278,18 +274,14 @@ export class TransactionManagement extends ethereum.SmartContract {
 
   try_initCommand(
     _twitterInts: TransactionManagement__initCommandInput_twitterIntsStruct,
-    _twitterStrings: Array<string>,
-    _metaData: Array<Bytes>,
-    _functionData: Bytes
+    _twitterStrings: Array<string>
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "initCommand",
-      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[],bytes[],bytes):(bool)",
+      "initCommand((uint256,uint256,uint256,uint256,uint256,uint256),string[]):(bool)",
       [
         ethereum.Value.fromTuple(_twitterInts),
-        ethereum.Value.fromStringArray(_twitterStrings),
-        ethereum.Value.fromBytesArray(_metaData),
-        ethereum.Value.fromBytes(_functionData)
+        ethereum.Value.fromStringArray(_twitterStrings)
       ]
     );
     if (result.reverted) {
@@ -575,14 +567,6 @@ export class InitCommandCall__Inputs {
 
   get _twitterStrings(): Array<string> {
     return this._call.inputValues[1].value.toStringArray();
-  }
-
-  get _metaData(): Array<Bytes> {
-    return this._call.inputValues[2].value.toBytesArray();
-  }
-
-  get _functionData(): Bytes {
-    return this._call.inputValues[3].value.toBytes();
   }
 }
 

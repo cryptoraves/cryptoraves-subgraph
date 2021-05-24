@@ -276,16 +276,6 @@
         "internalType": "string[]",
         "name": "_twitterStrings",
         "type": "string[]"
-      },
-      {
-        "internalType": "bytes[]",
-        "name": "_metaData",
-        "type": "bytes[]"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_functionData",
-        "type": "bytes"
       }
     ],
     "name": "initCommand",

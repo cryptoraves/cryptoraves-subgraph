@@ -20,6 +20,8 @@ yarn create-local
 
 yarn deploy-local
 
+#test send via skaleOracle pathway
+python3 unittest_skaleOracle.py output '[[99434443434, 1376597010976026633, 0, 4949, 1, 1394711866161631238], ["Mr.Garrison", "@nomnominist", "TKA", "twitter", "transfer", "https://sample-imgs.s3.amazonaws.com/mr.garrison.png", ""]]'
 
 # TokenManagement Contract
 curl -d '{"query": "{ deposits(first: 5){ id to value tokenAddress cryptoravesTokenId ercType } }" }' http://127.0.0.1:8000/subgraphs/name/cryptoraves/cryptoraves-subgraph
