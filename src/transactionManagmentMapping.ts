@@ -1,4 +1,4 @@
-import { Transfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
+import { CryptoravesTransfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
 import { _Transfer, _User, _UserBalance } from "../generated/schema"
 
 import { store, log } from '@graphprotocol/graph-ts'
@@ -6,7 +6,7 @@ import { store, log } from '@graphprotocol/graph-ts'
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
 
-export function handleTransfer(event: Transfer): void {
+export function handleCryptoravesTransfer(event: CryptoravesTransfer): void {
   let id = event.transaction.hash.toHex()
 
   let entity = _Transfer.load(id)

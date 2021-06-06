@@ -8,7 +8,7 @@ truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
 
 
 cd ~/graph-node/docker
-sudo rm -R data/postgres
+sudo rm -R data/postgres #clears any existing graph index
 
 docker-compose up
 

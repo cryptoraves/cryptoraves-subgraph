@@ -51,8 +51,8 @@ dataSources:
         - name: TransactionManagement
           file: TransactionManagement/abis/cryptoravesContracts/TransactionManagement.json
       eventHandlers:
-        - event: Transfer(address,address,uint256,uint256,uint256)
-          handler: handleTransfer
+        - event: CryptoravesTransfer(address,address,uint256,uint256,uint256)
+          handler: handleCryptoravesTransfer
         - event: HeresMyAddress(address,address,uint256)
           handler: handleHeresMyAddress
       file: TransactionManagement/TransactionManagement.wasm

@@ -10,6 +10,40 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class CryptoravesTransfer extends ethereum.Event {
+  get params(): CryptoravesTransfer__Params {
+    return new CryptoravesTransfer__Params(this);
+  }
+}
+
+export class CryptoravesTransfer__Params {
+  _event: CryptoravesTransfer;
+
+  constructor(event: CryptoravesTransfer) {
+    this._event = event;
+  }
+
+  get _from(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get _to(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get _value(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get _cryptoravesTokenId(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get _tweetId(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+}
+
 export class HeresMyAddress extends ethereum.Event {
   get params(): HeresMyAddress__Params {
     return new HeresMyAddress__Params(this);
@@ -33,40 +67,6 @@ export class HeresMyAddress__Params {
 
   get _tweetId(): BigInt {
     return this._event.parameters[2].value.toBigInt();
-  }
-}
-
-export class Transfer extends ethereum.Event {
-  get params(): Transfer__Params {
-    return new Transfer__Params(this);
-  }
-}
-
-export class Transfer__Params {
-  _event: Transfer;
-
-  constructor(event: Transfer) {
-    this._event = event;
-  }
-
-  get _from(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get _to(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get _value(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get _cryptoravesTokenId(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get _tweetId(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
   }
 }
 

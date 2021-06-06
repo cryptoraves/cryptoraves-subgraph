@@ -21,31 +21,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_layer1Address",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_cryptoravesAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_tweetId",
-        "type": "uint256"
-      }
-    ],
-    "name": "HeresMyAddress",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "_from",
         "type": "address"
       },
@@ -74,7 +49,32 @@
         "type": "uint256"
       }
     ],
-    "name": "Transfer",
+    "name": "CryptoravesTransfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_layer1Address",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_cryptoravesAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tweetId",
+        "type": "uint256"
+      }
+    ],
+    "name": "HeresMyAddress",
     "type": "event"
   },
   {
