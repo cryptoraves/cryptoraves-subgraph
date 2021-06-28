@@ -1,7 +1,7 @@
 import { CryptoravesTransfer, HeresMyAddress } from '../generated/TransactionManagement/TransactionManagement'
 import { _Transfer, _User, _UserBalance } from "../generated/schema"
 
-import { store, log } from '@graphprotocol/graph-ts'
+import { store, log, BigInt } from '@graphprotocol/graph-ts'
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
 
@@ -31,20 +31,24 @@ export function handleCryptoravesTransfer(event: CryptoravesTransfer): void {
   }
 
   let fBal = balanceFrom.balance
-  if(fBal){
-    fBal = fBal.minus(event.params._value)
-  } else {
-    fBal = event.params._value
-  }
-
-  if (fBal.isZero()){
-    store.remove('_UserBalance', balanceIdFrom)
-  } else {
+  fBal = fBal.minus(event.params._value)
+  if(fBal > BigInt.fromI32(0)){
     balanceFrom.balance = fBal
     balanceFrom.token = event.params._cryptoravesTokenId.toHex()
     balanceFrom.user = event.params._from.toHex()
     balanceFrom.save()
+  }else{
+    store.remove('_UserBalance', balanceIdFrom)
   }
+
+//  if (fBal.isZero()){
+//    store.remove('_UserBalance', balanceIdFrom)
+//  } else {
+//    balanceFrom.balance = fBal
+//    balanceFrom.token = event.params._cryptoravesTokenId.toHex()
+//    balanceFrom.user = event.params._from.toHex()
+//    balanceFrom.save()
+//  }
   let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
   let balanceTo = _UserBalance.load(balanceIdTo)
   if (balanceTo == null) {
@@ -52,11 +56,8 @@ export function handleCryptoravesTransfer(event: CryptoravesTransfer): void {
   }
 
   let tBal = balanceTo.balance
-  if(tBal){
-    tBal = tBal.plus(event.params._value)
-  } else {
-    tBal = event.params._value
-  }
+  tBal = tBal.plus(event.params._value)
+
 
   balanceTo.balance = tBal
   balanceTo.token = event.params._cryptoravesTokenId.toHex()

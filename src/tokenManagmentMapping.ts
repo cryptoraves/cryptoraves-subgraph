@@ -19,22 +19,6 @@ export function handleDeposit(event: Deposit): void {
   entity.ercType = event.params._ercType
   entity.save()
 
-  let balanceId = event.params._to.toHex().concat(event.params.cryptoravesTokenId.toHex())
-  let balance = _UserBalance.load(balanceId)
-  if (balance == null) {
-    balance = new _UserBalance(balanceId)
-  }
-  let bal = balance.balance
-  if(event.params._ercType.toString() == '721'){
-    bal = bal.plus(BigInt.fromI32(1))
-  } else {
-    bal = bal.plus(event.params._value)
-  }
-  balance.balance = bal
-  balance.token = event.params.cryptoravesTokenId.toHex()
-  balance.user = event.params._to.toHex()
-  balance.save()
-
 
 }
 export function handleWithdraw(event: Withdraw): void {
@@ -50,27 +34,6 @@ export function handleWithdraw(event: Withdraw): void {
   entity.ercType = event.params._ercType
   entity.save()
 
-  let balanceId = event.params._from.toHex().concat(event.params.cryptoravesTokenId.toHex())
-  let balance = _UserBalance.load(balanceId)
-  if (balance == null) {
-    balance = new _UserBalance(balanceId)
-  }
-  let bal = balance.balance
-  if(event.params._ercType.toString() == '721'){
-    bal = bal.minus(BigInt.fromI32(1))
-  } else {
-    bal = bal.minus(event.params._value)
-  }
-
-  log.info("balance and fromAddress and timestamp: {} {} {}", [bal.toString(), event.params._from.toHexString(), event.block.timestamp.toString()])
-  if (bal.isZero()){
-    store.remove('_UserBalance', balanceId)
-  } else {
-    balance.balance = bal
-    balance.token = event.params.cryptoravesTokenId.toHex()
-    balance.user = event.params._from.toHex()
-    balance.save()
-  }
 }
 export function handleCryptoDropped(event: CryptoDropped): void {
   let id = event.transaction.hash.toHex()

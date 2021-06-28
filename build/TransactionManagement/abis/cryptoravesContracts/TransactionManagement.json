@@ -139,6 +139,20 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "tokenManagementContractAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
     "inputs": [
       {
         "internalType": "address",

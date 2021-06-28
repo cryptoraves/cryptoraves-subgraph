@@ -325,6 +325,52 @@ export class TokenManagement extends ethereum.SmartContract {
     return new TokenManagement("TokenManagement", address);
   }
 
+  cryptoravesIdByAddress(param0: Address): BigInt {
+    let result = super.call(
+      "cryptoravesIdByAddress",
+      "cryptoravesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(param0)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_cryptoravesIdByAddress(param0: Address): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "cryptoravesIdByAddress",
+      "cryptoravesIdByAddress(address):(uint256)",
+      [ethereum.Value.fromAddress(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  cryptoravesTokenAddr(): Address {
+    let result = super.call(
+      "cryptoravesTokenAddr",
+      "cryptoravesTokenAddr():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_cryptoravesTokenAddr(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "cryptoravesTokenAddr",
+      "cryptoravesTokenAddr():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   getERCspecs(
     _tknAddr: Address,
     _ercType: BigInt
@@ -360,6 +406,52 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       value[0].toTuple() as TokenManagement__getERCspecsResultValue0Struct
     );
+  }
+
+  getNonFungibleBaseType(_id: BigInt): BigInt {
+    let result = super.call(
+      "getNonFungibleBaseType",
+      "getNonFungibleBaseType(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getNonFungibleBaseType(_id: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getNonFungibleBaseType",
+      "getNonFungibleBaseType(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  getNonFungibleIndex(_id: BigInt): BigInt {
+    let result = super.call(
+      "getNonFungibleIndex",
+      "getNonFungibleIndex(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getNonFungibleIndex(_id: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getNonFungibleIndex",
+      "getNonFungibleIndex(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_id)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getTransactionManagerAddress(): Address {
@@ -563,52 +655,6 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  tokenBaseBytesIdByAddress(param0: Address): BigInt {
-    let result = super.call(
-      "tokenBaseBytesIdByAddress",
-      "tokenBaseBytesIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_tokenBaseBytesIdByAddress(param0: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "tokenBaseBytesIdByAddress",
-      "tokenBaseBytesIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getCryptoravesTokenAddress(): Address {
-    let result = super.call(
-      "getCryptoravesTokenAddress",
-      "getCryptoravesTokenAddress():(address)",
-      []
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_getCryptoravesTokenAddress(): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "getCryptoravesTokenAddress",
-      "getCryptoravesTokenAddress():(address)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
   proxyDepositWithdraw(
     destination: Address,
     value: BigInt,
@@ -646,6 +692,38 @@ export class TokenManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  getCryptoravesNFTIDbyTickerAndIndex(_ticker: string, index: BigInt): BigInt {
+    let result = super.call(
+      "getCryptoravesNFTIDbyTickerAndIndex",
+      "getCryptoravesNFTIDbyTickerAndIndex(string,uint128):(uint256)",
+      [
+        ethereum.Value.fromString(_ticker),
+        ethereum.Value.fromUnsignedBigInt(index)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getCryptoravesNFTIDbyTickerAndIndex(
+    _ticker: string,
+    index: BigInt
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getCryptoravesNFTIDbyTickerAndIndex",
+      "getCryptoravesNFTIDbyTickerAndIndex(string,uint128):(uint256)",
+      [
+        ethereum.Value.fromString(_ticker),
+        ethereum.Value.fromUnsignedBigInt(index)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getAddressBySymbol(_symbol: string): Address {
@@ -834,31 +912,6 @@ export class TokenManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  getManagedTokenBasedBytesIdByAddress(_tokenAddr: Address): BigInt {
-    let result = super.call(
-      "getManagedTokenBasedBytesIdByAddress",
-      "getManagedTokenBasedBytesIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getManagedTokenBasedBytesIdByAddress(
-    _tokenAddr: Address
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getManagedTokenBasedBytesIdByAddress",
-      "getManagedTokenBasedBytesIdByAddress(address):(uint256)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getTokenListCount(): BigInt {

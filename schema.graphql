@@ -17,18 +17,18 @@ type _Withdraw @entity {
 }
 type _Token @entity {
 	id: ID!
-    cryptoravesTokenId: BigInt!
-    isManagedToken: Boolean!
-    ercType: BigInt!
-    totalSupply: BigInt!
-    name: String!
-    symbol: String!
-    decimals: BigInt!
-    emoji: String!
-    tokenBrandImageUrl: String
-		tokenDescription: String
+  cryptoravesTokenId: BigInt!
+  isManagedToken: Boolean!
+  ercType: BigInt!
+  totalSupply: BigInt!
+  name: String!
+  symbol: String!
+  decimals: BigInt!
+  emoji: String!
+  tokenBrandImageUrl: String
+	tokenDescription: String
 
-		modified: BigInt!
+	modified: BigInt!
 }
 type _CryptoDropped @entity {
 	id: ID!
