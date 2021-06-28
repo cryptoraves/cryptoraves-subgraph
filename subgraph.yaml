@@ -24,7 +24,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,indexed address,indexed uint256,uint256)
           handler: handleWithdraw
-        - event: Token((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))
+        - event: Token((uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string))
           handler: handleToken
         - event: Emoji(uint256,string)
           handler: handleEmoji

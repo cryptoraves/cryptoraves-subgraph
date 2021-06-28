@@ -221,6 +221,15 @@ export class _Token extends Entity {
     this.set("ercType", Value.fromBigInt(value));
   }
 
+  get nftIndex(): BigInt {
+    let value = this.get("nftIndex");
+    return value.toBigInt();
+  }
+
+  set nftIndex(value: BigInt) {
+    this.set("nftIndex", Value.fromBigInt(value));
+  }
+
   get totalSupply(): BigInt {
     let value = this.get("totalSupply");
     return value.toBigInt();

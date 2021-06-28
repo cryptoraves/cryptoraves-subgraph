@@ -163,32 +163,36 @@ export class TokenParam0Struct extends ethereum.Tuple {
     return this[2].toBigInt();
   }
 
-  get totalSupply(): BigInt {
+  get nftIndex(): BigInt {
     return this[3].toBigInt();
   }
 
-  get name(): string {
-    return this[4].toString();
+  get totalSupply(): BigInt {
+    return this[4].toBigInt();
   }
 
-  get symbol(): string {
+  get name(): string {
     return this[5].toString();
   }
 
+  get symbol(): string {
+    return this[6].toString();
+  }
+
   get decimals(): BigInt {
-    return this[6].toBigInt();
+    return this[7].toBigInt();
   }
 
   get emoji(): string {
-    return this[7].toString();
-  }
-
-  get tokenBrandImageUrl(): string {
     return this[8].toString();
   }
 
-  get tokenDescription(): string {
+  get tokenBrandImageUrl(): string {
     return this[9].toString();
+  }
+
+  get tokenDescription(): string {
+    return this[10].toString();
   }
 }
 
@@ -239,32 +243,36 @@ export class TokenManagement__getERCspecsResultValue0Struct extends ethereum.Tup
     return this[2].toBigInt();
   }
 
-  get totalSupply(): BigInt {
+  get nftIndex(): BigInt {
     return this[3].toBigInt();
   }
 
-  get name(): string {
-    return this[4].toString();
+  get totalSupply(): BigInt {
+    return this[4].toBigInt();
   }
 
-  get symbol(): string {
+  get name(): string {
     return this[5].toString();
   }
 
+  get symbol(): string {
+    return this[6].toString();
+  }
+
   get decimals(): BigInt {
-    return this[6].toBigInt();
+    return this[7].toBigInt();
   }
 
   get emoji(): string {
-    return this[7].toString();
-  }
-
-  get tokenBrandImageUrl(): string {
     return this[8].toString();
   }
 
-  get tokenDescription(): string {
+  get tokenBrandImageUrl(): string {
     return this[9].toString();
+  }
+
+  get tokenDescription(): string {
+    return this[10].toString();
   }
 }
 
@@ -273,24 +281,26 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
   value1: boolean;
   value2: BigInt;
   value3: BigInt;
-  value4: string;
+  value4: BigInt;
   value5: string;
-  value6: BigInt;
-  value7: string;
+  value6: string;
+  value7: BigInt;
   value8: string;
   value9: string;
+  value10: string;
 
   constructor(
     value0: BigInt,
     value1: boolean,
     value2: BigInt,
     value3: BigInt,
-    value4: string,
+    value4: BigInt,
     value5: string,
-    value6: BigInt,
-    value7: string,
+    value6: string,
+    value7: BigInt,
     value8: string,
-    value9: string
+    value9: string,
+    value10: string
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -302,6 +312,7 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
     this.value7 = value7;
     this.value8 = value8;
     this.value9 = value9;
+    this.value10 = value10;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
@@ -310,12 +321,13 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
     map.set("value1", ethereum.Value.fromBoolean(this.value1));
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
-    map.set("value4", ethereum.Value.fromString(this.value4));
+    map.set("value4", ethereum.Value.fromUnsignedBigInt(this.value4));
     map.set("value5", ethereum.Value.fromString(this.value5));
-    map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
-    map.set("value7", ethereum.Value.fromString(this.value7));
+    map.set("value6", ethereum.Value.fromString(this.value6));
+    map.set("value7", ethereum.Value.fromUnsignedBigInt(this.value7));
     map.set("value8", ethereum.Value.fromString(this.value8));
     map.set("value9", ethereum.Value.fromString(this.value9));
+    map.set("value10", ethereum.Value.fromString(this.value10));
     return map;
   }
 }
@@ -377,7 +389,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__getERCspecsResultValue0Struct {
     let result = super.call(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -393,7 +405,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__getERCspecsResultValue0Struct> {
     let result = super.tryCall(
       "getERCspecs",
-      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,string,string,uint256,string,string,string))",
+      "getERCspecs(address,uint256):((uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string))",
       [
         ethereum.Value.fromAddress(_tknAddr),
         ethereum.Value.fromUnsignedBigInt(_ercType)
@@ -520,7 +532,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): TokenManagement__managedTokenByFullBytesIdResult {
     let result = super.call(
       "managedTokenByFullBytesId",
-      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string,string)",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
@@ -529,12 +541,13 @@ export class TokenManagement extends ethereum.SmartContract {
       result[1].toBoolean(),
       result[2].toBigInt(),
       result[3].toBigInt(),
-      result[4].toString(),
+      result[4].toBigInt(),
       result[5].toString(),
-      result[6].toBigInt(),
-      result[7].toString(),
+      result[6].toString(),
+      result[7].toBigInt(),
       result[8].toString(),
-      result[9].toString()
+      result[9].toString(),
+      result[10].toString()
     );
   }
 
@@ -543,7 +556,7 @@ export class TokenManagement extends ethereum.SmartContract {
   ): ethereum.CallResult<TokenManagement__managedTokenByFullBytesIdResult> {
     let result = super.tryCall(
       "managedTokenByFullBytesId",
-      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,string,string,uint256,string,string,string)",
+      "managedTokenByFullBytesId(uint256):(uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -556,12 +569,13 @@ export class TokenManagement extends ethereum.SmartContract {
         value[1].toBoolean(),
         value[2].toBigInt(),
         value[3].toBigInt(),
-        value[4].toString(),
+        value[4].toBigInt(),
         value[5].toString(),
-        value[6].toBigInt(),
-        value[7].toString(),
+        value[6].toString(),
+        value[7].toBigInt(),
         value[8].toString(),
-        value[9].toString()
+        value[9].toString(),
+        value[10].toString()
       )
     );
   }

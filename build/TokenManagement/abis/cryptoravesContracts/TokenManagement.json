@@ -145,6 +145,11 @@
           },
           {
             "internalType": "uint256",
+            "name": "nftIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
             "name": "totalSupply",
             "type": "uint256"
           },
@@ -289,6 +294,11 @@
           {
             "internalType": "uint256",
             "name": "ercType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nftIndex",
             "type": "uint256"
           },
           {
@@ -447,6 +457,11 @@
       {
         "internalType": "uint256",
         "name": "ercType",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "nftIndex",
         "type": "uint256"
       },
       {

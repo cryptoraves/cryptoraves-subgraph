@@ -56,6 +56,7 @@ export function handleToken(event: Token): void {
   entity.cryptoravesTokenId = event.params.param0.cryptoravesTokenId
   entity.isManagedToken = event.params.param0.isManagedToken
   entity.ercType = event.params.param0.ercType
+  entity.nftIndex = event.params.param0.nftIndex
   entity.totalSupply = event.params.param0.totalSupply
   entity.name = event.params.param0.name
   entity.symbol = event.params.param0.symbol
