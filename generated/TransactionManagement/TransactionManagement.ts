@@ -185,22 +185,20 @@ export class TransactionManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  testForTransactionManagementAddressUniquely(): boolean {
+  testFortransactionManagerAddressUniquely(): boolean {
     let result = super.call(
-      "testForTransactionManagementAddressUniquely",
-      "testForTransactionManagementAddressUniquely():(bool)",
+      "testFortransactionManagerAddressUniquely",
+      "testFortransactionManagerAddressUniquely():(bool)",
       []
     );
 
     return result[0].toBoolean();
   }
 
-  try_testForTransactionManagementAddressUniquely(): ethereum.CallResult<
-    boolean
-  > {
+  try_testFortransactionManagerAddressUniquely(): ethereum.CallResult<boolean> {
     let result = super.tryCall(
-      "testForTransactionManagementAddressUniquely",
-      "testForTransactionManagementAddressUniquely():(bool)",
+      "testFortransactionManagerAddressUniquely",
+      "testFortransactionManagerAddressUniquely():(bool)",
       []
     );
     if (result.reverted) {
