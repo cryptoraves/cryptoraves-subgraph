@@ -162,6 +162,29 @@ export class TransactionManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
+  standardMintAmount(): BigInt {
+    let result = super.call(
+      "standardMintAmount",
+      "standardMintAmount():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_standardMintAmount(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "standardMintAmount",
+      "standardMintAmount():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   tokenManagementContractAddress(): Address {
     let result = super.call(
       "tokenManagementContractAddress",
@@ -176,6 +199,29 @@ export class TransactionManagement extends ethereum.SmartContract {
     let result = super.tryCall(
       "tokenManagementContractAddress",
       "tokenManagementContractAddress():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  userManagementContractAddress(): Address {
+    let result = super.call(
+      "userManagementContractAddress",
+      "userManagementContractAddress():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_userManagementContractAddress(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "userManagementContractAddress",
+      "userManagementContractAddress():(address)",
       []
     );
     if (result.reverted) {

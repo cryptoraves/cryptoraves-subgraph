@@ -651,68 +651,6 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "_userId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getUser",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "twitterUserId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "cryptoravesAddress",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "twitterHandle",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "imageUrl",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "isManaged",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "isUser",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "dropped",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "tokenId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct UserManagement.User",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
         "internalType": "string",
         "name": "_platformHandle",
         "type": "string"

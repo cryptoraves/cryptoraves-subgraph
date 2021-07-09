@@ -252,40 +252,6 @@ export class UserManagement__userAccountCheckResultValue0Struct extends ethereum
   }
 }
 
-export class UserManagement__getUserResultValue0Struct extends ethereum.Tuple {
-  get twitterUserId(): BigInt {
-    return this[0].toBigInt();
-  }
-
-  get cryptoravesAddress(): Address {
-    return this[1].toAddress();
-  }
-
-  get twitterHandle(): string {
-    return this[2].toString();
-  }
-
-  get imageUrl(): string {
-    return this[3].toString();
-  }
-
-  get isManaged(): boolean {
-    return this[4].toBoolean();
-  }
-
-  get isUser(): boolean {
-    return this[5].toBoolean();
-  }
-
-  get dropped(): boolean {
-    return this[6].toBoolean();
-  }
-
-  get tokenId(): BigInt {
-    return this[7].toBigInt();
-  }
-}
-
 export class UserManagement extends ethereum.SmartContract {
   static bind(address: Address): UserManagement {
     return new UserManagement("UserManagement", address);
@@ -722,33 +688,6 @@ export class UserManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  getUser(_userId: BigInt): UserManagement__getUserResultValue0Struct {
-    let result = super.call(
-      "getUser",
-      "getUser(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(_userId)]
-    );
-
-    return result[0].toTuple() as UserManagement__getUserResultValue0Struct;
-  }
-
-  try_getUser(
-    _userId: BigInt
-  ): ethereum.CallResult<UserManagement__getUserResultValue0Struct> {
-    let result = super.tryCall(
-      "getUser",
-      "getUser(uint256):((uint256,address,string,string,bool,bool,bool,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(_userId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      value[0].toTuple() as UserManagement__getUserResultValue0Struct
-    );
   }
 
   getUserIdByPlatformHandle(_platformHandle: string): BigInt {
