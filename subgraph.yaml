@@ -34,28 +34,9 @@ dataSources:
           handler: handleDescriptionChange
         - event: CryptoDropped(address,uint256)
           handler: handleCryptoDropped
-      file: ./src/tokenManagmentMapping.ts
-  - kind: ethereum/contract
-    name: TransactionManagement
-    network: mainnet
-    source:
-      address: '0x3DACE1f87940C422cBC292ed009b594c06E78610' #run truffle test in web3-tools, then cut and paste TransactionManagementContractAddress1 here
-      abi: TransactionManagement
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - TransactionManagement
-      abis:
-        - name: TransactionManagement
-          file: ./abis/cryptoravesContracts/TransactionManagement.json
-      eventHandlers:
         - event: CryptoravesTransfer(address,address,uint256,uint256,uint256)
           handler: handleCryptoravesTransfer
-        - event: HeresMyAddress(address,address,uint256)
-          handler: handleHeresMyAddress
-      file: ./src/transactionManagmentMapping.ts
+      file: ./src/tokenManagmentMapping.ts
   - kind: ethereum/contract
     name: UserManagement
     network: mainnet
@@ -78,6 +59,8 @@ dataSources:
           handler: handleUsernameChange
         - event: ImageChange(address,string)
           handler: handleImageChange
+        - event: HeresMyAddress(address,address,uint256)
+          handler: handleHeresMyAddress
       file: ./src/userManagmentMapping.ts
   - kind: ethereum/contract
     name: CryptoravesToken

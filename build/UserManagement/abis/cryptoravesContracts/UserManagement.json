@@ -10,6 +10,31 @@
       {
         "indexed": false,
         "internalType": "address",
+        "name": "_layer1Address",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_cryptoravesAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tweetId",
+        "type": "uint256"
+      }
+    ],
+    "name": "HeresMyAddress",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "_cryptoravesAddress",
         "type": "address"
       },
@@ -490,6 +515,11 @@
         "internalType": "address",
         "name": "_l1Addr",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tweetId",
+        "type": "uint256"
       }
     ],
     "name": "mapLayerOneAccount",

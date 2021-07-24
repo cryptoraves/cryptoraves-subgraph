@@ -36,9 +36,6 @@ type _CryptoDropped @entity {
 	user: Bytes!
 	cryptoravesTokenId: BigInt!
 }
-
-
-#transactionManagement
 type _Transfer @entity {
 	id: ID!
 	from: _User!
@@ -50,8 +47,6 @@ type _Transfer @entity {
 
 	modified: BigInt!
 }
-
-
 
 #userManagement
 type _User @entity {

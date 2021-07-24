@@ -21,43 +21,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_value",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_cryptoravesTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_tweetId",
-        "type": "uint256"
-      }
-    ],
-    "name": "CryptoravesTransfer",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "_layer1Address",
         "type": "address"
       },
@@ -414,39 +377,6 @@
       }
     ],
     "name": "resetTokenDrop",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_value",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_cryptoravesTokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tweetId",
-        "type": "uint256"
-      }
-    ],
-    "name": "emitTransferFromTokenManagementContract",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

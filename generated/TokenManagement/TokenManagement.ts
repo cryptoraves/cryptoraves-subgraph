@@ -32,6 +32,40 @@ export class CryptoDropped__Params {
   }
 }
 
+export class CryptoravesTransfer extends ethereum.Event {
+  get params(): CryptoravesTransfer__Params {
+    return new CryptoravesTransfer__Params(this);
+  }
+}
+
+export class CryptoravesTransfer__Params {
+  _event: CryptoravesTransfer;
+
+  constructor(event: CryptoravesTransfer) {
+    this._event = event;
+  }
+
+  get _from(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get _to(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get _value(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get _cryptoravesTokenId(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get _tweetId(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+}
+
 export class Deposit extends ethereum.Event {
   get params(): Deposit__Params {
     return new Deposit__Params(this);
@@ -623,6 +657,29 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
+  standardMintAmount(): BigInt {
+    let result = super.call(
+      "standardMintAmount",
+      "standardMintAmount():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_standardMintAmount(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "standardMintAmount",
+      "standardMintAmount():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   symbolAndEmojiLookupTable(param0: string): BigInt {
     let result = super.call(
       "symbolAndEmojiLookupTable",
@@ -667,6 +724,49 @@ export class TokenManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  dropCrypto(
+    _twitterHandleFrom: string,
+    account: Address,
+    amount: BigInt,
+    data: Bytes
+  ): BigInt {
+    let result = super.call(
+      "dropCrypto",
+      "dropCrypto(string,address,uint256,bytes):(uint256)",
+      [
+        ethereum.Value.fromString(_twitterHandleFrom),
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromUnsignedBigInt(amount),
+        ethereum.Value.fromBytes(data)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_dropCrypto(
+    _twitterHandleFrom: string,
+    account: Address,
+    amount: BigInt,
+    data: Bytes
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "dropCrypto",
+      "dropCrypto(string,address,uint256,bytes):(uint256)",
+      [
+        ethereum.Value.fromString(_twitterHandleFrom),
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromUnsignedBigInt(amount),
+        ethereum.Value.fromBytes(data)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   proxyDepositWithdraw(
@@ -1180,6 +1280,10 @@ export class DropCryptoCall__Outputs {
 
   constructor(call: DropCryptoCall) {
     this._call = call;
+  }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
   }
 }
 

@@ -1,4 +1,4 @@
-import { Deposit, Withdraw, CryptoDropped, Token, Emoji, ImgUrlChange, DescriptionChange } from '../generated/TokenManagement/TokenManagement'
+import { Deposit, Withdraw, CryptoDropped, Token, Emoji, ImgUrlChange, DescriptionChange, CryptoravesTransfer } from '../generated/TokenManagement/TokenManagement'
 
 import { _Deposit, _Withdraw, _CryptoDropped, _Token, _UserBalance, _Transfer } from "../generated/schema"
 
@@ -94,5 +94,66 @@ export function handleDescriptionChange(event: DescriptionChange): void {
   token.tokenDescription = event.params._description
   token.modified = event.block.timestamp
   token.save()
+
+}
+export function handleCryptoravesTransfer(event: CryptoravesTransfer): void {
+  let id = event.transaction.hash.toHex()
+
+  let entity = _Transfer.load(id)
+  if (entity == null) {
+    entity = new _Transfer(id)
+  }
+
+  entity.from = event.params._from.toHex()
+
+  entity.to = event.params._to.toHex()
+  entity.amount = event.params._value
+  entity.token = event.params._cryptoravesTokenId.toHex()
+  entity.tweetId = event.params._tweetId
+  entity.fromTo = event.params._from.toHex().concat(event.params._to.toHex())
+  entity.modified = event.block.timestamp
+  entity.save()
+
+  let balanceIdFrom = event.params._from.toHex().concat(event.params._cryptoravesTokenId.toHex())
+  let balanceFrom = _UserBalance.load(balanceIdFrom)
+  if (balanceFrom == null) {
+    balanceFrom = new _UserBalance(balanceIdFrom)
+  }
+
+  let fBal = balanceFrom.balance
+  fBal = fBal.minus(event.params._value)
+  if(fBal > BigInt.fromI32(0)){
+    balanceFrom.balance = fBal
+    balanceFrom.token = event.params._cryptoravesTokenId.toHex()
+    balanceFrom.user = event.params._from.toHex()
+    balanceFrom.save()
+  }else{
+    store.remove('_UserBalance', balanceIdFrom)
+  }
+
+//  if (fBal.isZero()){
+//    store.remove('_UserBalance', balanceIdFrom)
+//  } else {
+//    balanceFrom.balance = fBal
+//    balanceFrom.token = event.params._cryptoravesTokenId.toHex()
+//    balanceFrom.user = event.params._from.toHex()
+//    balanceFrom.save()
+//  }
+  let balanceIdTo = event.params._to.toHex().concat(event.params._cryptoravesTokenId.toHex())
+  let balanceTo = _UserBalance.load(balanceIdTo)
+  if (balanceTo == null) {
+    balanceTo = new _UserBalance(balanceIdTo)
+  }
+
+  let tBal = balanceTo.balance
+  tBal = tBal.plus(event.params._value)
+
+
+  balanceTo.balance = tBal
+  balanceTo.token = event.params._cryptoravesTokenId.toHex()
+  balanceTo.user = event.params._to.toHex()
+  balanceTo.save()
+  log.info("ENTITYFROM*****TO*********USER******: {} {}", [event.params._from.toHexString(), event.params._to.toHex()])
+
 
 }

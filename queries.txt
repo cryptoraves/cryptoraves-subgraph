@@ -1,10 +1,10 @@
-#fresh setup 
+#fresh setup
 ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "cabin regret chest donate above loop type forget pond equip physical like"
 
 
 cd ~/web3-tools
 truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
-./deployPerformanceTokens.sh
+./deployPerformanceTokens.sh --redeploymentMigration
 
 
 cd ~/graph-node/docker

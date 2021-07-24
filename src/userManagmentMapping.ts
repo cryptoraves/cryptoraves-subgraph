@@ -1,4 +1,4 @@
-import { UserData, UsernameChange, ImageChange} from '../generated/UserManagement/UserManagement'
+import { UserData, UsernameChange, ImageChange, HeresMyAddress } from '../generated/UserManagement/UserManagement'
 import { _User } from "../generated/schema"
 
 //https://github.com/dao34/PRQ/blob/master/src/mapping.ts
@@ -41,4 +41,15 @@ export function handleImageChange(event: ImageChange): void {
   entity.imageUrl = event.params.imageUrl
   entity.modified = event.block.timestamp
   entity.save()
+}
+
+export function handleHeresMyAddress(event: HeresMyAddress): void {
+  let id = event.params._cryptoravesAddress.toHex()
+
+  let entity = _User.load(id)
+
+  entity.layer1Address = event.params._layer1Address
+  entity.modified = event.block.timestamp
+  entity.save()
+
 }

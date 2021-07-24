@@ -10,6 +10,32 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class HeresMyAddress extends ethereum.Event {
+  get params(): HeresMyAddress__Params {
+    return new HeresMyAddress__Params(this);
+  }
+}
+
+export class HeresMyAddress__Params {
+  _event: HeresMyAddress;
+
+  constructor(event: HeresMyAddress) {
+    this._event = event;
+  }
+
+  get _layer1Address(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get _cryptoravesAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get _tweetId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
 export class ImageChange extends ethereum.Event {
   get params(): ImageChange__Params {
     return new ImageChange__Params(this);
@@ -975,6 +1001,10 @@ export class MapLayerOneAccountCall__Inputs {
 
   get _l1Addr(): Address {
     return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _tweetId(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
   }
 }
 
