@@ -458,20 +458,6 @@
     "constant": true
   },
   {
-    "inputs": [],
-    "name": "isAvailable",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function",
-    "constant": true
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -535,6 +521,20 @@
         "internalType": "string",
         "name": "tokenDescription",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "numberOfTokens",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -667,6 +667,83 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_cryptoravesTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTokenStruct",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "cryptoravesTokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isManagedToken",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ercType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nftIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "decimals",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "emoji",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenBrandImageUrl",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tokenDescription",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct ERCDepositable.ManagedToken",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   },
   {
     "inputs": [
@@ -848,106 +925,6 @@
         "internalType": "uint256",
         "name": "_1155tokenId",
         "type": "uint256"
-      }
-    ],
-    "name": "getTotalSupply",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getSymbol",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getEmoji",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getERCtype",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_tokenAddr",
-        "type": "address"
-      }
-    ],
-    "name": "isManagedToken",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
       },
       {
         "internalType": "string",
@@ -1099,20 +1076,6 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getTokenListCount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "count",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
   },
   {
     "inputs": [

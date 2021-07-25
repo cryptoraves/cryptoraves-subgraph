@@ -366,6 +366,52 @@ export class TokenManagement__managedTokenByFullBytesIdResult {
   }
 }
 
+export class TokenManagement__getTokenStructResultValue0Struct extends ethereum.Tuple {
+  get cryptoravesTokenId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get isManagedToken(): boolean {
+    return this[1].toBoolean();
+  }
+
+  get ercType(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get nftIndex(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get totalSupply(): BigInt {
+    return this[4].toBigInt();
+  }
+
+  get name(): string {
+    return this[5].toString();
+  }
+
+  get symbol(): string {
+    return this[6].toString();
+  }
+
+  get decimals(): BigInt {
+    return this[7].toBigInt();
+  }
+
+  get emoji(): string {
+    return this[8].toString();
+  }
+
+  get tokenBrandImageUrl(): string {
+    return this[9].toString();
+  }
+
+  get tokenDescription(): string {
+    return this[10].toString();
+  }
+}
+
 export class TokenManagement extends ethereum.SmartContract {
   static bind(address: Address): TokenManagement {
     return new TokenManagement("TokenManagement", address);
@@ -546,21 +592,6 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isAvailable(): boolean {
-    let result = super.call("isAvailable", "isAvailable():(bool)", []);
-
-    return result[0].toBoolean();
-  }
-
-  try_isAvailable(): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isAvailable", "isAvailable():(bool)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   managedTokenByFullBytesId(
     param0: BigInt
   ): TokenManagement__managedTokenByFullBytesIdResult {
@@ -612,6 +643,25 @@ export class TokenManagement extends ethereum.SmartContract {
         value[10].toString()
       )
     );
+  }
+
+  numberOfTokens(): BigInt {
+    let result = super.call("numberOfTokens", "numberOfTokens():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_numberOfTokens(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "numberOfTokens",
+      "numberOfTokens():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   onERC721Received(
@@ -726,6 +776,35 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  getTokenStruct(
+    _cryptoravesTokenId: BigInt
+  ): TokenManagement__getTokenStructResultValue0Struct {
+    let result = super.call(
+      "getTokenStruct",
+      "getTokenStruct(uint256):((uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string))",
+      [ethereum.Value.fromUnsignedBigInt(_cryptoravesTokenId)]
+    );
+
+    return result[0].toTuple() as TokenManagement__getTokenStructResultValue0Struct;
+  }
+
+  try_getTokenStruct(
+    _cryptoravesTokenId: BigInt
+  ): ethereum.CallResult<TokenManagement__getTokenStructResultValue0Struct> {
+    let result = super.tryCall(
+      "getTokenStruct",
+      "getTokenStruct(uint256):((uint256,bool,uint256,uint256,uint256,string,string,uint256,string,string,string))",
+      [ethereum.Value.fromUnsignedBigInt(_cryptoravesTokenId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as TokenManagement__getTokenStructResultValue0Struct
+    );
+  }
+
   dropCrypto(
     _twitterHandleFrom: string,
     account: Address,
@@ -824,109 +903,6 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getTotalSupply(_1155tokenId: BigInt): BigInt {
-    let result = super.call(
-      "getTotalSupply",
-      "getTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getTotalSupply(_1155tokenId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getTotalSupply",
-      "getTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_1155tokenId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getSymbol(_1155tokenId: BigInt): string {
-    let result = super.call("getSymbol", "getSymbol(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-
-    return result[0].toString();
-  }
-
-  try_getSymbol(_1155tokenId: BigInt): ethereum.CallResult<string> {
-    let result = super.tryCall("getSymbol", "getSymbol(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  getEmoji(_1155tokenId: BigInt): string {
-    let result = super.call("getEmoji", "getEmoji(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-
-    return result[0].toString();
-  }
-
-  try_getEmoji(_1155tokenId: BigInt): ethereum.CallResult<string> {
-    let result = super.tryCall("getEmoji", "getEmoji(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  getERCtype(_1155tokenId: BigInt): BigInt {
-    let result = super.call("getERCtype", "getERCtype(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_getERCtype(_1155tokenId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("getERCtype", "getERCtype(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_1155tokenId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  isManagedToken(_tokenAddr: Address): boolean {
-    let result = super.call(
-      "isManagedToken",
-      "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_isManagedToken(_tokenAddr: Address): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "isManagedToken",
-      "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   getNextBaseId(_1155tokenId: BigInt): BigInt {
     let result = super.call(
       "getNextBaseId",
@@ -981,29 +957,6 @@ export class TokenManagement extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(_value),
         ethereum.Value.fromUnsignedBigInt(_decimalPlace)
       ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getTokenListCount(): BigInt {
-    let result = super.call(
-      "getTokenListCount",
-      "getTokenListCount():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getTokenListCount(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getTokenListCount",
-      "getTokenListCount():(uint256)",
-      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();

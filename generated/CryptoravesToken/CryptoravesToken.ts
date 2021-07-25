@@ -302,21 +302,6 @@ export class CryptoravesToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isAvailable(): boolean {
-    let result = super.call("isAvailable", "isAvailable():(bool)", []);
-
-    return result[0].toBoolean();
-  }
-
-  try_isAvailable(): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isAvailable", "isAvailable():(bool)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   supportsInterface(interfaceId: Bytes): boolean {
     let result = super.call(
       "supportsInterface",

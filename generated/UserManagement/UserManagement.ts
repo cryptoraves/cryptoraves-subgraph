@@ -329,21 +329,6 @@ export class UserManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isAvailable(): boolean {
-    let result = super.call("isAvailable", "isAvailable():(bool)", []);
-
-    return result[0].toBoolean();
-  }
-
-  try_isAvailable(): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isAvailable", "isAvailable():(bool)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   layerOneAccounts(param0: Address): Address {
     let result = super.call(
       "layerOneAccounts",
@@ -473,86 +458,6 @@ export class UserManagement extends ethereum.SmartContract {
     );
   }
 
-  getUserId(_account: Address): BigInt {
-    let result = super.call("getUserId", "getUserId(address):(uint256)", [
-      ethereum.Value.fromAddress(_account)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_getUserId(_account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("getUserId", "getUserId(address):(uint256)", [
-      ethereum.Value.fromAddress(_account)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getUserAccount(_platformUserId: BigInt): Address {
-    let result = super.call(
-      "getUserAccount",
-      "getUserAccount(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_platformUserId)]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_getUserAccount(_platformUserId: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "getUserAccount",
-      "getUserAccount(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_platformUserId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  isUser(_userId: BigInt): boolean {
-    let result = super.call("isUser", "isUser(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_userId)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isUser(_userId: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isUser", "isUser(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_userId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  dropState(_platformUserId: BigInt): boolean {
-    let result = super.call("dropState", "dropState(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_platformUserId)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_dropState(_platformUserId: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("dropState", "dropState(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_platformUserId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   getUserStruct(
     _platformUserId: BigInt
   ): UserManagement__getUserStructResultValue0Struct {
@@ -623,52 +528,6 @@ export class UserManagement extends ethereum.SmartContract {
     );
   }
 
-  getLayerOneAccount(_l2Addr: Address): Address {
-    let result = super.call(
-      "getLayerOneAccount",
-      "getLayerOneAccount(address):(address)",
-      [ethereum.Value.fromAddress(_l2Addr)]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_getLayerOneAccount(_l2Addr: Address): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "getLayerOneAccount",
-      "getLayerOneAccount(address):(address)",
-      [ethereum.Value.fromAddress(_l2Addr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  getLayerTwoAccount(_l1Addr: Address): Address {
-    let result = super.call(
-      "getLayerTwoAccount",
-      "getLayerTwoAccount(address):(address)",
-      [ethereum.Value.fromAddress(_l1Addr)]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_getLayerTwoAccount(_l1Addr: Address): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "getLayerTwoAccount",
-      "getLayerTwoAccount(address):(address)",
-      [ethereum.Value.fromAddress(_l1Addr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
   userAccountCheck(
     _platformUserId: BigInt,
     _twitterHandle: string,
@@ -708,56 +567,6 @@ export class UserManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       value[0].toTuple() as UserManagement__userAccountCheckResultValue0Struct
     );
-  }
-
-  userHasL1AddressMapped(_userCryptoravesAddr: Address): boolean {
-    let result = super.call(
-      "userHasL1AddressMapped",
-      "userHasL1AddressMapped(address):(bool)",
-      [ethereum.Value.fromAddress(_userCryptoravesAddr)]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_userHasL1AddressMapped(
-    _userCryptoravesAddr: Address
-  ): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "userHasL1AddressMapped",
-      "userHasL1AddressMapped(address):(bool)",
-      [ethereum.Value.fromAddress(_userCryptoravesAddr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  getUserIdByPlatformHandle(_platformHandle: string): BigInt {
-    let result = super.call(
-      "getUserIdByPlatformHandle",
-      "getUserIdByPlatformHandle(string):(uint256)",
-      [ethereum.Value.fromString(_platformHandle)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getUserIdByPlatformHandle(
-    _platformHandle: string
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getUserIdByPlatformHandle",
-      "getUserIdByPlatformHandle(string):(uint256)",
-      [ethereum.Value.fromString(_platformHandle)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   setDropState(_platformUserId: BigInt, _state: boolean): Address {

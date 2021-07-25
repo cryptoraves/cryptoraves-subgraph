@@ -8,7 +8,7 @@ dataSources:
     name: TokenManagement
     network: mainnet
     source:
-      address: "0xc4999070aB5e1F640e835E3b2f6ca3d893016F94"
+      address: "0x9beE347F6259e1603d2991596FC36787B6997B98"
       abi: TokenManagement
     mapping:
       kind: ethereum/events
@@ -41,7 +41,7 @@ dataSources:
     name: UserManagement
     network: mainnet
     source:
-      address: "0xf82eCB2D8EF735196599e081361F35d12bCcB81f"
+      address: "0x7585B84A8b78AE5665479eFCd9B2b07360364700"
       abi: UserManagement
     mapping:
       kind: ethereum/events
@@ -66,7 +66,7 @@ dataSources:
     name: CryptoravesToken
     network: mainnet
     source:
-      address: "0x6C5a34e12938977D14AeD852BAaC1FCFCF8d6b72"
+      address: "0xcC01ac48db275394914bA7e777784704b20752fe"
       abi: CryptoravesToken
     mapping:
       kind: ethereum/events
