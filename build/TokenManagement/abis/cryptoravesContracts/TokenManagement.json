@@ -289,7 +289,7 @@
   },
   {
     "inputs": [],
-    "name": "cryptoravesTokenAddr",
+    "name": "cryptoravesTokenAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -800,35 +800,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "destination",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
-      }
-    ],
-    "name": "proxyDepositWithdraw",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "success",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "string",
         "name": "_ticker",
         "type": "string"
@@ -917,24 +888,6 @@
         "internalType": "uint256",
         "name": "_1155tokenId",
         "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_symbol",
-        "type": "string"
-      }
-    ],
-    "name": "setSymbol",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
       }
     ],
     "name": "getEmoji",
@@ -955,24 +908,6 @@
         "internalType": "uint256",
         "name": "_1155tokenId",
         "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_emoji",
-        "type": "string"
-      }
-    ],
-    "name": "setEmoji",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_1155tokenId",
-        "type": "uint256"
       }
     ],
     "name": "getERCtype",
@@ -986,6 +921,62 @@
     "stateMutability": "view",
     "type": "function",
     "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenAddr",
+        "type": "address"
+      }
+    ],
+    "name": "isManagedToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_1155tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_symbol",
+        "type": "string"
+      }
+    ],
+    "name": "setSymbol",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_1155tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_emoji",
+        "type": "string"
+      }
+    ],
+    "name": "setEmoji",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "inputs": [
@@ -1054,26 +1045,6 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_tokenAddr",
-        "type": "address"
-      }
-    ],
-    "name": "isManagedToken",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
   },
   {
     "inputs": [

@@ -394,20 +394,20 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  cryptoravesTokenAddr(): Address {
+  cryptoravesTokenAddress(): Address {
     let result = super.call(
-      "cryptoravesTokenAddr",
-      "cryptoravesTokenAddr():(address)",
+      "cryptoravesTokenAddress",
+      "cryptoravesTokenAddress():(address)",
       []
     );
 
     return result[0].toAddress();
   }
 
-  try_cryptoravesTokenAddr(): ethereum.CallResult<Address> {
+  try_cryptoravesTokenAddress(): ethereum.CallResult<Address> {
     let result = super.tryCall(
-      "cryptoravesTokenAddr",
-      "cryptoravesTokenAddr():(address)",
+      "cryptoravesTokenAddress",
+      "cryptoravesTokenAddress():(address)",
       []
     );
     if (result.reverted) {
@@ -769,45 +769,6 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  proxyDepositWithdraw(
-    destination: Address,
-    value: BigInt,
-    data: Bytes
-  ): boolean {
-    let result = super.call(
-      "proxyDepositWithdraw",
-      "proxyDepositWithdraw(address,uint256,bytes):(bool)",
-      [
-        ethereum.Value.fromAddress(destination),
-        ethereum.Value.fromUnsignedBigInt(value),
-        ethereum.Value.fromBytes(data)
-      ]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_proxyDepositWithdraw(
-    destination: Address,
-    value: BigInt,
-    data: Bytes
-  ): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "proxyDepositWithdraw",
-      "proxyDepositWithdraw(address,uint256,bytes):(bool)",
-      [
-        ethereum.Value.fromAddress(destination),
-        ethereum.Value.fromUnsignedBigInt(value),
-        ethereum.Value.fromBytes(data)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   getCryptoravesNFTIDbyTickerAndIndex(_ticker: string, index: BigInt): BigInt {
     let result = super.call(
       "getCryptoravesNFTIDbyTickerAndIndex",
@@ -943,6 +904,29 @@ export class TokenManagement extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  isManagedToken(_tokenAddr: Address): boolean {
+    let result = super.call(
+      "isManagedToken",
+      "isManagedToken(address):(bool)",
+      [ethereum.Value.fromAddress(_tokenAddr)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isManagedToken(_tokenAddr: Address): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isManagedToken",
+      "isManagedToken(address):(bool)",
+      [ethereum.Value.fromAddress(_tokenAddr)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   getNextBaseId(_1155tokenId: BigInt): BigInt {
     let result = super.call(
       "getNextBaseId",
@@ -1003,29 +987,6 @@ export class TokenManagement extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  isManagedToken(_tokenAddr: Address): boolean {
-    let result = super.call(
-      "isManagedToken",
-      "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_isManagedToken(_tokenAddr: Address): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "isManagedToken",
-      "isManagedToken(address):(bool)",
-      [ethereum.Value.fromAddress(_tokenAddr)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   getTokenListCount(): BigInt {
@@ -1414,48 +1375,6 @@ export class WithdrawERC721Call__Outputs {
 
   get value0(): BigInt {
     return this._call.outputValues[0].value.toBigInt();
-  }
-}
-
-export class ProxyDepositWithdrawCall extends ethereum.Call {
-  get inputs(): ProxyDepositWithdrawCall__Inputs {
-    return new ProxyDepositWithdrawCall__Inputs(this);
-  }
-
-  get outputs(): ProxyDepositWithdrawCall__Outputs {
-    return new ProxyDepositWithdrawCall__Outputs(this);
-  }
-}
-
-export class ProxyDepositWithdrawCall__Inputs {
-  _call: ProxyDepositWithdrawCall;
-
-  constructor(call: ProxyDepositWithdrawCall) {
-    this._call = call;
-  }
-
-  get destination(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get value(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get data(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
-  }
-}
-
-export class ProxyDepositWithdrawCall__Outputs {
-  _call: ProxyDepositWithdrawCall;
-
-  constructor(call: ProxyDepositWithdrawCall) {
-    this._call = call;
-  }
-
-  get success(): boolean {
-    return this._call.outputValues[0].value.toBoolean();
   }
 }
 
