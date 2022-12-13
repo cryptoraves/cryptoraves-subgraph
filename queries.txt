@@ -1,10 +1,13 @@
 #fresh setup
-ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "cabin regret chest donate above loop type forget pond equip physical like"
+#ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "cabin regret chest donate above loop type forget pond equip physical like"
+ganache-cli -h 0.0.0.0 -l 20000000 -a 61 -m "nasty bar stem myth bamboo faith inmate medal will parrot reopen letter hole rebel truly panda ivory orient keep rebel surge forest shock cactus"
 
 
-cd ~/web3-tools
-truffle migrate  	#copy tokenmanagementContract address to subgraph.yaml
-./deployPerformanceTokens.sh --redeploymentMigration
+cd ~/cryptoraves-official
+npx hardhat run scripts/deploy.js --network homestead
+cat /tmp/homestead-contractAddresses.json  #copy tokenmanagementContract address to subgraph.yaml
+cd ~/web3-tools/
+./deployPerformanceTokens.sh --redeploymentMigrationCryptoravesOnly #--redeploymentMigration
 
 
 cd ~/graph-node/docker
@@ -12,6 +15,10 @@ sudo rm -R data/postgres #clears any existing graph index
 
 docker-compose up
 
+#if error "address already in use":
+sudo lsof -i -P -n | grep 5432  #last field should match port number from error
+kill <process id>   # second field from output of above
+#try docker-compose up again
 
 cd ~/cryptoraves-subgraph
 yarn codegen
@@ -25,7 +32,8 @@ python3 unittest_lambda_function.py output '{"for_user_id":"1376597010976026633"
 
 python3 unittest_skaleOracle.py output '[[99434443434, 1376597014774, 0, 0, 0, 1394711866161631238], ["@mrgarrison", "@candy", "$TKB", "twitter", "transfer", "https://sample-imgs.s3.amazonaws.com/mr.garrison.pn", ""]]'
 
-
+# dynamic openzeppelin
+yarn add @openzeppelin/contracts@3.3
 
 
 # TokenManagement Contract
